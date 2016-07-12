@@ -141,7 +141,7 @@ public class Analy {
 			  JSONArray jsonArr = new JSONArray(content);
 			  Artist artist = new Artist();
 			   for(int i=0;i<jsonArr.length();i++)
-	    	      {
+	    	      {   
 				   	JSONObject  songInfo = jsonArr.getJSONObject(i);
 				   	org.music.bean.Track track = new org.music.bean.Track();
 				   //	track.setDuration(duration);
