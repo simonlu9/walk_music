@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta property="qc:admins" content="27354635321361636375" /> 
+  <meta name="keywords" content="Extra Covers Collection，Lotte Kestner，2011-01-01，Saint-Loup Records " /> 
+  <meta name="description" content="歌手：Lotte Kestner。发行时间：2011-01-01。发行公司：Saint-Loup Records 。网易云音乐是一款专注于发现与分享的音乐产品，依托专业音乐人、DJ、好友推荐及社交功能，为用户打造全新的音乐生活。" /> 
+  <title>Extra Covers Collection - Lotte Kestner - 网易云音乐</title> 
+  <script type="text/javascript">
+var GRef = '';
+var GAbroad = false;
+var GUser={userId:1562682,nickname:"simonlu",avatarUrl:"http://p4.music.126.net/dm6X67Y5CIqUKE0sciN1nw==/1384285148880861.jpg",birthday:"585849600000",userType:0,djStatus:0}
+var GAllowRejectComment = false;
+var GEnc = true;
+var GEnvType = "online";
+window.NEJ_CONF = {p_csrf:{cookie:'__csrf',param:'csrf_token'}};
+//线上环境参数配置
+window.MUSIC_CONFIG = {
+pushHost:'web.push.126.net',
+pushPort:'6003',
+pushKey:'3b97981848064bbabeaaf2fb1eab7368'
+};
+GUtil = {
+getBase:function(){
+return 'http://'+location.hostname;
+},
+getPathAndHash:function(_url){//获取URL path 之后的所有内容,并将/#/替换成/m/使之成为path的一部分
+if(!_url) return '';
+var _reg0 = /^https?:\/\/.*?\//i,
+_reg1 = /\/?#\/?/i;
+return _url.replace(_reg0,'/').replace(_reg1,'/m/');
+},
+composeRefer:function(_url,_ref){//对所有的页面请求都加上ref参数表示被嵌套的来源
+if(!_ref) return _url;
+var _hi = _url.indexOf('#'),
+_si = _url.indexOf('?');
+if(_si>0&&(_si<_hi||_hi<0)){
+return _url.substring(0,_si+1)+'ref='+_ref+'&'+_url.substring(_si+1);
+}else if(_hi>0&&(_si<0||_si>_hi)){
+return _url.substring(0,_hi)+'?ref='+_ref+_url.substring(_hi);
+}else{
+return _url+'?ref='+_ref;
+}
+}
+};(function(){
+var _ua = window.navigator.userAgent,
+_isMobile = /(mobile|mobi|wap|iphone)/i.test(_ua),
+_isAndroid = /android/i.test(_ua),
+_isIpad = /(ipad)/i.test(_ua),
+_igList = [/^\/xiami$/,/^\/live$/],//不需要以单页面打开的列表，比如某些活动页面
+_pn = location.pathname,
+_idx = _pn.lastIndexOf('/'),
+_pReg = /\s*(\w+)\s*=\s*(\d+)\s*/,
+_redirect2mobile = function(){
+var _type,_murl,
+_params = {},
+_hash = location.hash,
+_mReg = /^#\/?m?\/(share|song|playlist|djradio|dj|program|album|mv|artist|topic|radio|zysf|drqp|qp|activity|store)/,
+_base = 'http://'+location.hostname,
+_sindex = _hash.lastIndexOf('?'),
+_search = _sindex>-1?_hash.substring(_sindex+1):'';
+if(!_hash.length||!_mReg.test(_hash)||(RegExp.$1!='store' && !_search)||_hash.indexOf('activity')>=0){
+if((!_search||_hash.indexOf('activity')>=0)&&_hash.length){
+location.href = _base+'/'+_hash.replace('#','m');
+}else{
+location.href = _base+'/m/';
+}
+return;
+}else{
+_type = RegExp.$1;
+}
+for(var plist=_search.split('&'),i=plist.length,value;i>=0;i--){
+value = plist[i];
+if(_pReg.test(value)) _params[RegExp.$1] = RegExp.$2;
+}
+if(_type=='dj'){
+_murl = '/m/program/'+_params.id+'/0';
+}else if(_type=='share'){
+_murl = '/m/share/'+_params.uid+'/'+_params.id;
+}else if(_type=='playlist'){
+_murl = '/m/playlist/'+_params.id+'/0';;
+}else if(_type == 'zysf' || _type == 'drqp' || _type == 'qp'){
+_murl = '/m/' + _type + '?activityId=' + _params.activityId;
+}else if(_type == 'store') {
+_murl = _hash.indexOf('store/product/detail') > 0 ? _hash.replace('#/store', '/store/m') :'/store/m/product/index';
+}else{
+_murl = '/m/'+_type+'/'+_params.id;
+}
+location.href = _base+_murl;
+};
+if(_isMobile || _isAndroid || _isIpad){
+_redirect2mobile();
+return;
+}
+if(!_pn||_pn=='/') return;
+for(var i in _igList){
+if(_igList[i].test(_pn)) return;
+}
+if(top==self){
+location.href = '/#'+GUtil.getPathAndHash(location.href);
+return;
+}
+//搜索引擎过来的内容页连接
+if(top==self&&/^\/static\/(song|playlist|album|artist)/i.test(_pn)){
+location.href = '/#'+_pn.substring(0,_idx).replace('/static/','/')+'?id='+_pn.substring(_idx+1);
+}
+})();
+(function(){
+var _addEvent = function(_node,_type,_cb){
+if(_node.addEventListener){
+_node.addEventListener(_type,_cb);
+}else if(_node.attachEvent){
+_node.attachEvent('on'+_type,_cb);
+}
+},
+_onAnchorClick = function(_event){//截获所有<a>标签的点击事件，自定义页面的跳转
+_event = _event||window.event;
+var _el = _event.target||_event.srcElement,
+_base = location.protocol+'//'+location.host;
+while(_el&&_el!=document){
+if(_el.tagName&&_el.tagName.toLowerCase()=='a'){
+//fix ie6下有时javascript:;不能阻止默认事件的bug.
+if(_el.href.indexOf('javascript:')>=0){
+!!_event.preventDefault
+? _event.preventDefault()
+: _event.returnValue = !1;
+return;
+}
+if(_event.button==2) return;//ff 右键会触发click事件
+//新窗口打开的链接、云音乐单页面形式的链接、站外的链接不做拦截处理。
+if(_el.target=='_blank'
+||_el.target=='blank'
+||(_el.href.charAt(0)!='/'&&_el.href.indexOf('//'+location.hostname)<0)
+||_el.href==_base
+||_el.href.indexOf(_base+'/#')>=0) return;
+!!_event.preventDefault
+? _event.preventDefault()
+: _event.returnValue = !1;
+location.dispatch2(_el.href);
+break;
+}else{
+_el = _el.parentNode;
+}
+}
+};
+_addEvent(document,'click',_onAnchorClick);
+//扩展一个js中直接使用的页面跳转的方法，以拦截js中的页面跳转行为
+location.dispatch2 = function(_url,_replace){
+var delegate = false;
+try{
+delegate = !!top.GDispatcher;
+}catch(e){
+delegate = false;
+}
+if(delegate){
+top.GDispatcher.dispatch(_url,_replace);
+}else{
+_url = GUtil.composeRefer(_url,GRef);
+//邮箱音乐盒中，每次链接的跳转都要将proxy.html的地址合并到hash中
+if(GRef&&GRef=='mail'){
+var _hindex,_sindex,
+_reg = /(http:\/\/.+\/proxy.html)/,
+_hreg = /#(.*?)$/,
+_href = decodeURIComponent(location.href);
+if(!_reg.test(decodeURIComponent(_url))&&_reg.test(_href)){
+_hindex = _url.indexOf('#');
+_sindex = _url.lastIndexOf('?');
+if(_hindex>0){
+_url = _url+(_sindex>_hindex?'&':'?')+'proxy='+encodeURIComponent(RegExp.$1);
+}else{
+_url = _url+'#proxy='+encodeURIComponent(RegExp.$1);
+}
+}
+}
+if(_replace){
+location.replace(_url);
+}else{
+location.href = _url;
+}
+}
+};
+})();(function(){
+if(window.addEventListener){
+window.addEventListener('scroll', onScroll)
+}else{
+window.attachEvent('onscroll', onScroll)
+}
+try{
+top.scrollTopbar(0);
+}catch(e){
+}
+function onScroll(){
+try{
+top.scrollTopbar(Math.max(document.body.scrollTop, document.documentElement.scrollTop));
+}catch(e){
+//ignore
+}
+};
+})();</script> 
+  <base href="http://music.163.com/" target="_top" /> 
+  <link rel="shortcut icon" href="http://s1.music.126.net/music.ico?v1" /> 
+  <link href="//s2.music.126.net/sep/s/2/core.css?91df7523d11faa8828b495ade85534a5" type="text/css" rel="stylesheet" />
+  <link href="//s2.music.126.net/sep/s/2/pt_frame.css?d25602d5d8475c7c1562aec1d7215602" type="text/css" rel="stylesheet" /> 
+ </head> 
+ <body> 
+  <div data-module="discover" data-sub="other" id="g_top" class="m-top">
+   &nbsp;
+  </div> 
+  <div id="g_nav" class="m-subnav">
+   &nbsp;
+  </div> 
+  <script>
+try{
+top.matchNav("discover", "other");
+}catch(e){
+}
+</script> 
+  <div class="g-bd4 f-cb p-share"> 
+   <div class="g-mn4"> 
+    <div class="g-mn4c"> 
+     <div class="g-wrap6"> 
+      <div class="m-info f-cb"> 
+       <div class="cover u-cover u-cover-alb"> 
+        <img src="http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg?param=177y177" class="j-img" data-src="http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg" /> 
+        <span class="msk"></span> 
+       </div> 
+       <div class="cnt"> 
+        <div class="cntc"> 
+         <div class="topblk"> 
+          <div class="hd f-cb"> 
+           <i class="f-fl u-icn u-icn-16"></i> 
+           <div class="tit"> 
+            <h2 class="f-ff2">Extra Covers Collection</h2> 
+           </div> 
+          </div> 
+          <p class="intr"><b>歌手：</b> <a href="http://music.163.com/artist?id=64218" class="s-fc7" title="Lotte Kestner">Lotte Kestner</a> </p> 
+          <p class="intr"><b>发行时间：</b>2011-01-01</p> 
+          <p class="intr"><b>发行公司：</b> Saint-Loup Records </p> 
+         </div> 
+         <div id="content-operation" class="btns f-cb" data-rid="2594510" data-type="19"> 
+          <a data-res-action="play" data-res-id="2594510" data-res-type="19" href="" class="u-btn2 u-btn2-2 u-btni-addply f-fl" hidefocus="true" title="播放"><i><em class="ply"></em>播放</i></a> 
+          <a data-res-action="addto" data-res-id="2594510" data-res-type="19" href="" class="u-btni u-btni-add" hidefocus="true" title="添加到播放列表"></a> 
+          <a data-res-id="2594510" data-res-type="19" data-count="-1" data-res-name="Extra Covers Collection" data-res-action="fav" class="u-btni u-btni-fav " href=""> <i>收藏</i> </a> 
+          <a data-res-id="2594510" data-res-type="19" data-count="0" data-res-action="share" data-res-name="Extra Covers Collection" data-res-author="Lotte Kestner" data-res-authors="Lotte Kestner" data-res-pic="" class="u-btni u-btni-share " href=""><i>分享</i></a> 
+          <a data-res-id="2594510" data-res-type="19" data-res-action="download" class="u-btni u-btni-dl " href=""><i>下载</i></a> 
+          <a data-res-action="comment" href="" class="u-btni u-btni-cmmt "><i>(<span id="cnt_comment_count">3</span>)</i></a> 
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+      <div class="n-songtb"> 
+       <div class="u-title u-title-1 f-cb"> 
+        <div class="out s-fc3"> 
+         <i class="u-icn u-icn-95 f-fl"></i> 
+         <a class="s-fc7 des" data-action="outchain" data-href="http://music.163.com/outchain/1/2594510/">生成外链播放器</a> 
+        </div> 
+        <h3><span class="f-ff2">包含歌曲列表</span></h3>
+        <span class="sub s-fc3">18首歌</span> 
+       </div> 
+       <div id="song-list-pre-cache" data-key="track_album-2594510" data-simple="0"> 
+        <div class="u-load s-fc4">
+         <i class="icn"></i> 加载中...
+        </div> 
+        <ul class="f-hide">
+         <li><a href="http://music.163.com/song?id=27238582">Weak And Powerless</a></li>
+         <li><a href="http://music.163.com/song?id=27238583">Eyes Without A Face</a></li>
+         <li><a href="http://music.163.com/song?id=27238584">If I Were</a></li>
+         <li><a href="http://music.163.com/song?id=27238585">Harmless Sparks</a></li>
+         <li><a href="http://music.163.com/song?id=27238586">Black Metallic</a></li>
+         <li><a href="http://music.163.com/song?id=27238587">Move With Me</a></li>
+         <li><a href="http://music.163.com/song?id=27238588">Payphone Patience</a></li>
+         <li><a href="http://music.163.com/song?id=27238589">Please Fall In Love With Me</a></li>
+         <li><a href="http://music.163.com/song?id=27238590">Misread</a></li>
+         <li><a href="http://music.163.com/song?id=27238591">Conversation 16</a></li>
+         <li><a href="http://music.163.com/song?id=27238592">Your Protector</a></li>
+         <li><a href="http://music.163.com/song?id=27238593">I Want You</a></li>
+         <li><a href="http://music.163.com/song?id=27238594">Mr. Blue</a></li>
+         <li><a href="http://music.163.com/song?id=27238595">The First Time Ever I Saw Your Face</a></li>
+         <li><a href="http://music.163.com/song?id=27238596">Motion Picture Soundtrack</a></li>
+         <li><a href="http://music.163.com/song?id=27238597">It'll Never Happen Again</a></li>
+         <li><a href="http://music.163.com/song?id=27238598">Somebody That I Used To Know</a></li>
+         <li><a href="http://music.163.com/song?id=27238599">Tripoli</a></li>
+        </ul> 
+        <textarea style="display:none;">[{&quot;privilege&quot;:{&quot;id&quot;:27238582,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:1,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238582&quot;,&quot;name&quot;:&quot;Weak And Powerless&quot;,&quot;id&quot;:27238582,&quot;duration&quot;:205009},{&quot;privilege&quot;:{&quot;id&quot;:27238583,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:2,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:15.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238583&quot;,&quot;name&quot;:&quot;Eyes Without A Face&quot;,&quot;id&quot;:27238583,&quot;duration&quot;:232542},{&quot;privilege&quot;:{&quot;id&quot;:27238584,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:3,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238584&quot;,&quot;name&quot;:&quot;If I Were&quot;,&quot;id&quot;:27238584,&quot;duration&quot;:105979},{&quot;privilege&quot;:{&quot;id&quot;:27238585,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:4,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238585&quot;,&quot;name&quot;:&quot;Harmless Sparks&quot;,&quot;id&quot;:27238585,&quot;duration&quot;:157780},{&quot;privilege&quot;:{&quot;id&quot;:27238586,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:5,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238586&quot;,&quot;name&quot;:&quot;Black Metallic&quot;,&quot;id&quot;:27238586,&quot;duration&quot;:203677},{&quot;privilege&quot;:{&quot;id&quot;:27238587,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:6,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238587&quot;,&quot;name&quot;:&quot;Move With Me&quot;,&quot;id&quot;:27238587,&quot;duration&quot;:237009},{&quot;privilege&quot;:{&quot;id&quot;:27238588,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:7,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238588&quot;,&quot;name&quot;:&quot;Payphone Patience&quot;,&quot;id&quot;:27238588,&quot;duration&quot;:188395},{&quot;privilege&quot;:{&quot;id&quot;:27238589,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:8,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238589&quot;,&quot;name&quot;:&quot;Please Fall In Love With Me&quot;,&quot;id&quot;:27238589,&quot;duration&quot;:190198},{&quot;privilege&quot;:{&quot;id&quot;:27238590,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:9,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238590&quot;,&quot;name&quot;:&quot;Misread&quot;,&quot;id&quot;:27238590,&quot;duration&quot;:232594},{&quot;privilege&quot;:{&quot;id&quot;:27238591,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:10,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238591&quot;,&quot;name&quot;:&quot;Conversation 16&quot;,&quot;id&quot;:27238591,&quot;duration&quot;:296934},{&quot;privilege&quot;:{&quot;id&quot;:27238592,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:11,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238592&quot;,&quot;name&quot;:&quot;Your Protector&quot;,&quot;id&quot;:27238592,&quot;duration&quot;:203807},{&quot;privilege&quot;:{&quot;id&quot;:27238593,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:12,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238593&quot;,&quot;name&quot;:&quot;I Want You&quot;,&quot;id&quot;:27238593,&quot;duration&quot;:304849},{&quot;privilege&quot;:{&quot;id&quot;:27238594,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:13,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238594&quot;,&quot;name&quot;:&quot;Mr. Blue&quot;,&quot;id&quot;:27238594,&quot;duration&quot;:190171},{&quot;privilege&quot;:{&quot;id&quot;:27238595,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:14,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238595&quot;,&quot;name&quot;:&quot;The First Time Ever I Saw Your Face&quot;,&quot;id&quot;:27238595,&quot;duration&quot;:256052},{&quot;privilege&quot;:{&quot;id&quot;:27238596,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:15,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238596&quot;,&quot;name&quot;:&quot;Motion Picture Soundtrack&quot;,&quot;id&quot;:27238596,&quot;duration&quot;:200385},{&quot;privilege&quot;:{&quot;id&quot;:27238597,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:16,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p4.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238597&quot;,&quot;name&quot;:&quot;It'll Never Happen Again&quot;,&quot;id&quot;:27238597,&quot;duration&quot;:217182},{&quot;privilege&quot;:{&quot;id&quot;:27238598,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:17,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:75.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238598&quot;,&quot;name&quot;:&quot;Somebody That I Used To Know&quot;,&quot;id&quot;:27238598,&quot;duration&quot;:329065},{&quot;privilege&quot;:{&quot;id&quot;:27238599,&quot;fee&quot;:0,&quot;payed&quot;:0,&quot;st&quot;:0,&quot;pl&quot;:320000,&quot;dl&quot;:320000,&quot;sp&quot;:7,&quot;cp&quot;:1,&quot;subp&quot;:1,&quot;cs&quot;:false,&quot;maxbr&quot;:320000,&quot;fl&quot;:320000,&quot;toast&quot;:false},&quot;fee&quot;:0,&quot;ftype&quot;:0,&quot;no&quot;:18,&quot;status&quot;:1,&quot;copyrightId&quot;:0,&quot;score&quot;:5.0,&quot;album&quot;:{&quot;id&quot;:2594510,&quot;name&quot;:&quot;Extra Covers Collection&quot;,&quot;picUrl&quot;:&quot;http://p3.music.126.net/IK708IgblOwBu9TRoKbH_w==/1308418837090103.jpg&quot;,&quot;pic_str&quot;:&quot;1308418837090103&quot;,&quot;pic&quot;:1308418837090103},&quot;artists&quot;:[{&quot;id&quot;:64218,&quot;name&quot;:&quot;Lotte Kestner&quot;}],&quot;transNames&quot;:null,&quot;mvid&quot;:0,&quot;alias&quot;:[],&quot;commentThreadId&quot;:&quot;R_SO_4_27238599&quot;,&quot;name&quot;:&quot;Tripoli&quot;,&quot;id&quot;:27238599,&quot;duration&quot;:127451}]</textarea> 
+       </div> 
+      </div> 
+      <div class="n-cmt" id="comment-box" data-tid="R_AL_3_2594510" data-count="3"></div> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="g-sd4"> 
+    <div class="g-wrap7"> 
+     <div class="m-sidead"> 
+      <a href="http://rd.da.netease.com/redirect?t=PgeZLO6VCj&amp;p=0722hg&amp;proId=1922&amp;target=http%3A%2F%2Fwww.kaola.com%2Factivity%2Fdetail%2F13603.shtml%3Ftag%3D39c18428bdd72630e076b136f47c6b31" id="j-sidead" data-pageid="2594510" data-pagetype="album" data-id="33002" target="_blank"><img src="http://p3.music.126.net/2wGoY5EGnsKomai-CmRA8A==/1416170989445667.jpg" alt="" /></a> 
+     </div> 
+     <h3 class="u-hd3"> <span class="f-fl">Ta的其他热门专辑</span> <a href="http://music.163.com/artist/album?id=64218" class="more f-ff1 s-fc3">全部&gt;</a> </h3> 
+     <ul class="m-rctlist f-cb"> 
+      <li> 
+       <div class="cver u-cover u-cover-3"> 
+        <a href="http://music.163.com/album?id=34700565" title="White Christmas"> <img src="http://p3.music.126.net/zZRh-PGNIkVy729OXK_tdA==/3412884093813055.jpg?param=50y50" /> </a> 
+       </div> 
+       <div class="info"> 
+        <p class="f-thide"><a class="sname f-fs1 s-fc0" href="http://music.163.com/album?id=34700565" title="White Christmas">White Christmas</a></p> 
+        <p class="s-fc3">2013-12-24</p> 
+       </div> </li> 
+      <li> 
+       <div class="cver u-cover u-cover-3"> 
+        <a href="http://music.163.com/album?id=2512940" title="Until - Buddy Ross Remix"> <img src="http://p3.music.126.net/u9Os2g8-Du3AE3SV72Yzdg==/4455221115751022.jpg?param=50y50" /> </a> 
+       </div> 
+       <div class="info"> 
+        <p class="f-thide"><a class="sname f-fs1 s-fc0" href="http://music.163.com/album?id=2512940" title="Until - Buddy Ross Remix">Until - Buddy Ross Remix</a></p> 
+        <p class="s-fc3">2013-04-11</p> 
+       </div> </li> 
+      <li> 
+       <div class="cver u-cover u-cover-3"> 
+        <a href="http://music.163.com/album?id=2419687" title="Until"> <img src="http://p3.music.126.net/LB_iBNHgvpGnW_xb9RXIHQ==/2368348046255266.jpg?param=50y50" /> </a> 
+       </div> 
+       <div class="info"> 
+        <p class="f-thide"><a class="sname f-fs1 s-fc0" href="http://music.163.com/album?id=2419687" title="Until">Until</a></p> 
+        <p class="s-fc3">2013-04-06</p> 
+       </div> </li> 
+      <li> 
+       <div class="cver u-cover u-cover-3"> 
+        <a href="http://music.163.com/album?id=2707232" title="The Bluebird of Happiness"> <img src="http://p3.music.126.net/qSltWF_1QMiyATld8kJldA==/6674035581518773.jpg?param=50y50" /> </a> 
+       </div> 
+       <div class="info"> 
+        <p class="f-thide"><a class="sname f-fs1 s-fc0" href="http://music.163.com/album?id=2707232" title="The Bluebird of Happiness">The Bluebird of Happiness</a></p> 
+        <p class="s-fc3">2013-02-26</p> 
+       </div> </li> 
+      <li> 
+       <div class="cver u-cover u-cover-3"> 
+        <a href="http://music.163.com/album?id=2586767" title="China Mountain B-Sides"> <img src="http://p4.music.126.net/A4QV2kqfuFuG6iZM6ZiTew==/5674579511036340.jpg?param=50y50" /> </a> 
+       </div> 
+       <div class="info"> 
+        <p class="f-thide"><a class="sname f-fs1 s-fc0" href="http://music.163.com/album?id=2586767" title="China Mountain B-Sides">China Mountain B-Sides</a></p> 
+        <p class="s-fc3">2012-07-26</p> 
+       </div> </li> 
+     </ul> 
+     <div class="m-multi"> 
+      <h3 class="u-hd3"> <span class="f-fl">网易云音乐多端下载</span> </h3> 
+      <ul class="bg f-cb"> 
+       <li><a data-res-action="bilog" data-log-action="downloadapp" data-log-json="{&quot;type&quot;:&quot;iPhone&quot;,&quot;source&quot;:&quot;detail&quot;}" href="https://itunes.apple.com/cn/app/wang-yi-yun-yin-le/id590338362?l=ch" class="ios" hidefocus="true" target="_blank">iPhone</a></li> 
+       <li><a data-res-action="bilog" data-log-action="downloadapp" data-log-json="{&quot;type&quot;:&quot;pc&quot;,&quot;source&quot;:&quot;detail&quot;}" href="http://music.163.com/api/pc/download/latest" class="pc" hidefocus="true" target="_blank">PC</a></li> 
+       <li><a data-res-action="bilog" data-log-action="downloadapp" data-log-json="{&quot;type&quot;:&quot;android&quot;,&quot;source&quot;:&quot;detail&quot;}" href="http://music.163.com/api/android/download/latest2" class="aos" hidefocus="true" target="_blank">Android</a></li> 
+      </ul> 
+      <p class="s-fc4">同步歌单，随时畅听320k好音乐</p> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="g-ft"> 
+   <div class="m-ft m-ft-0"> 
+    <div class="wrap"> 
+     <a class="logo f-tdn" href="http://music.163.com/recruit" target="_blank"> <span class="s-fc3">独立音乐人招募计划</span><br /> <span class="s-fc4">加入我们 即将与超过亿万乐迷互动</span> </a> 
+     <a class="logo logo-1 f-tdn" href="http://music.163.com/topic/recruit" target="_blank"> <span class="s-fc3">音乐专栏招募计划</span><br /> <span class="s-fc4">加入我们 与同道中人交流心得</span> </a> 
+     <div class="copy"> 
+      <p> <a href="http://music.163.com/about" target="_blank">关于网易</a><span>-</span> <a href="http://help.163.com/" target="_blank">客户服务</a><span>-</span> <a href="http://music.163.com/html/web2/service.html" target="_blank">服务条款</a><span>-</span> <a href="http://sitemap.163.com/" target="_blank">网站导航</a> 网易公司版权所有&copy;1997-2016</p> 
+      <p class="f-fl">网络文化经营许可证：<a href="http://p3.music.126.net/WStQyLN-HleNckDU5tfxrg==/1379887097474062.jpg" target="_blank">浙网文[2016]0155-055号</a><a id="g_feedback" href="http://music.163.com/album?id=2594510#" class="fback f-fr s-fc4" onclick="nm.x.feedback();return false;" hidefocus="true"><i class="u-icn u-icn-3"></i>意见反馈</a></p> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <a title="回到顶部" class="m-back" href="http://music.163.com/album?id=2594510#" id="g_backtop" hidefocus="true" style="display:none;">回到顶部</a> 
+  <div id="template-box" style="display:none;"> 
+   <textarea name="ntp" id="m-wgt-selector" style="display:none;">&lt;div class=&quot;u-slt f-pr&quot;&gt;&lt;span class=&quot;curr f-thide&quot;&gt;&lt;/span&gt;&lt;i class=&quot;btn&quot;&gt;&lt;/i&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-selector-list" style="display:none;">{list data as x}&lt;li class=&quot;f-thide&quot;&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-value=&quot;${x.v}&quot; title=&quot;${x.t}&quot;&gt;${x.t}&lt;/a&gt;&lt;/li&gt;{/list}
+</textarea> 
+   <textarea name="ntp" id="m-wgt-create" style="display:none;">&lt;div class=&quot;lyct m-crgd f-cb f-tc&quot;&gt;
+&lt;p&gt;歌单名：&lt;input type=&quot;text&quot; class=&quot;u-txt j-flag&quot;&gt;&lt;/p&gt;
+&lt;div class=&quot;u-err f-vhide j-flag&quot;&gt;&lt;i class=&quot;u-icn u-icn-25&quot;&gt;&lt;/i&gt;错误提示&lt;/div&gt;
+&lt;p class=&quot;tip s-fc4&quot;&gt;可通过“收藏”将音乐添加到新歌单中&lt;/p&gt;
+&lt;div class=&quot;btn&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;新 建&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;取 消&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-wgt-comment" style="display:none;">&lt;div class=&quot;u-title u-title-1&quot;&gt;
+&lt;h3&gt;&lt;span class=&quot;f-ff2&quot;&gt;评论&lt;/span&gt;&lt;/h3&gt;&lt;span class=&quot;sub s-fc3&quot;&gt;共&lt;span class=&quot;j-flag&quot;&gt;0&lt;/span&gt;条评论&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;m-cmmt&quot;&gt;
+&lt;div class=&quot;iptarea&quot;&gt;
+&lt;div class=&quot;head&quot;&gt;&lt;img src=&quot;http://p3.music.126.net/dm6X67Y5CIqUKE0sciN1nw==/1384285148880861.jpg?param=50y50&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cmmts j-flag&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-wgt-comment2" style="display:none;">&lt;div class=&quot;m-dynamic&quot;&gt;
+&lt;div class=&quot;dbox dbox-cmt&quot;&gt;
+&lt;span class=&quot;darr&quot;&gt;&lt;i class=&quot;bd&quot;&gt;◆&lt;/i&gt;&lt;i class=&quot;bg&quot;&gt;◆&lt;/i&gt;&lt;/span&gt;
+&lt;div class=&quot;m-cmmt m-cmmt-s&quot;&gt;
+&lt;div class=&quot;iptarea j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cmmts&quot;&gt;
+&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;dmore dmore-cmt f-cb&quot;&gt;
+&lt;div class=&quot;dhas s-fc3&quot;&gt;后面还有&lt;span class=&quot;j-flag&quot;&gt;0&lt;/span&gt;条评论，&lt;a data-type=&quot;viewmore&quot; class=&quot;s-fc3 f-ff1&quot; href=&quot;&quot;&gt;查看更多&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;a data-type=&quot;cc&quot; class=&quot;dtoggle&quot; href=&quot;&quot;&gt;收起&lt;i data-type=&quot;cc&quot; class=&quot;u-icn u-icn-61&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-wgt-comment3" style="display:none;">&lt;div class=&quot;dcmt&quot;&gt;
+&lt;p&gt;&lt;span class=&quot;f-fw1&quot;&gt;评论&lt;/span&gt; (&lt;span class=&quot;j-flag&quot;&gt;&lt;/span&gt;)&lt;/p&gt;
+&lt;div class=&quot;m-cmmt m-cmmt-s&quot;&gt;
+&lt;div class=&quot;iptarea j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cmmts j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-comment-item" style="display:none;"> {list beg..end as y}
+{var x=xlist[y]}
+{if !!x}
+&lt;div id=&quot;${x.commentId|seed}&quot; class=&quot;itm&quot; data-id=&quot;${x.commentId}&quot;&gt;
+&lt;div class=&quot;head&quot;&gt;
+&lt;a href=&quot;http://music.163.com/user/home?id=${x.user.userId}&quot;&gt;&lt;img src=&quot;${x.user.avatarUrl}?param=50y50&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cntwrap&quot;&gt;
+&lt;div class=&quot;&quot;&gt;
+&lt;div class=&quot;cnt f-brk&quot;&gt;
+&lt;a href=&quot;http://music.163.com/user/home?id=${x.user.userId}&quot; class=&quot;s-fc7&quot;&gt;${escape(x.user.nickname)}&lt;/a&gt;
+${getAuthIcon(x.user)}
+{if !!x.beRepliedUser}
+&nbsp;回复&nbsp;&lt;a href=&quot;http://music.163.com/user/home?id=${x.beRepliedUser.userId}&quot; class=&quot;s-fc7&quot;&gt;${escape(x.beRepliedUser.nickname)}&lt;/a&gt;
+{if x.beRepliedUser.userType==4}&lt;sup class=&quot;icn u-icn2 u-icn2-music2&quot;&gt;&lt;/sup&gt;
+{elseif x.beRepliedUser.authStatus==1}&lt;sup class=&quot;u-icn u-icn-1&quot;&gt;&lt;/sup&gt;
+{elseif x.beRepliedUser.expertTags &amp;&amp; x.beRepliedUser.expertTags.length&gt;0}&lt;sup class=&quot;u-icn u-icn-84&quot;&gt;&lt;/sup&gt;{/if}
+{/if}
+：${getRichText(escape(x.content),'s-fc7')}
+&lt;/div&gt;
+&lt;/div&gt;
+{if x.beReplied&amp;&amp;x.beReplied.length}
+{var replied = x.beReplied[0]}
+&lt;div class=&quot;que f-brk f-pr s-fc3&quot;&gt;
+&lt;span class=&quot;darr&quot;&gt;&lt;i class=&quot;bd&quot;&gt;◆&lt;/i&gt;&lt;i class=&quot;bg&quot;&gt;◆&lt;/i&gt;&lt;/span&gt;
+{if replied&amp;&amp;replied.content}
+&lt;a class=&quot;s-fc7&quot; href=&quot;http://music.163.com/user/home?id=${replied.user.userId}&quot;&gt;${replied.user.nickname}${getAuthIcon(replied.user)}&lt;/a&gt;：${getRichText(escape(replied.content),'s-fc7')}
+{else}
+该评论已删除
+{/if}
+&lt;/div&gt;
+{/if}
+&lt;div class=&quot;rp&quot;&gt;
+&lt;div class=&quot;time s-fc4&quot;&gt;${timeformat(x.time)}&lt;/div&gt;
+{if GUser&amp;&amp;GUser.userId&amp;&amp;(GUser.userId==x.user.userId||GUser.userId==resUserId)}
+&lt;span class=&quot;dlt&quot;&gt;&lt;a href=&quot;&quot; class=&quot;s-fc3&quot; data-id=&quot;${x.commentId}&quot; data-type=&quot;delete&quot;&gt;删除&lt;/a&gt;&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;&lt;/span&gt;
+{/if}
+{if GAllowRejectComment}
+{if hot||!x.isRemoveHotComment}
+&lt;span class=&quot;dlt&quot;&gt;&lt;a href=&quot;&quot; class=&quot;s-fc3&quot; data-id=&quot;${x.commentId}&quot; data-type=&quot;reject&quot;&gt;移除精彩评论&lt;/a&gt;&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;&lt;/span&gt;
+{else}
+&lt;span class=&quot;s-fc3&quot;&gt;已移除精彩评论&lt;/span&gt;&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;
+{/if}
+{/if}
+&lt;a data-id=&quot;${x.commentId}&quot; data-type=&quot;{if !x.liked}like{else}unlike{/if}&quot; href=&quot;&quot;&gt;&lt;i class=&quot;zan u-icn2 u-icn2-{if x.liked}13{else}12{/if}&quot;&gt;&lt;/i&gt;{if x.likedCount} (${getPlayCount(x.likedCount)}){/if}&lt;/a&gt;
+&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;
+&lt;a href=&quot;&quot; class=&quot;s-fc3&quot; data-id=&quot;${x.commentId}&quot; data-type=&quot;reply&quot;&gt;回复&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{/if}
+{/list}
+</textarea> 
+   <textarea name="jst" id="m-wgt-comment-item-2" style="display:none;"> {list beg..end as y}
+{var x=xlist[y]}
+&lt;div class=&quot;itm&quot; data-id=&quot;${x.commentId}&quot;&gt;
+&lt;div class=&quot;head&quot;&gt;
+&lt;a href=&quot;http://music.163.com/user/home?id=${x.user.userId}&quot;&gt;&lt;img src=&quot;${x.user.avatarUrl}?param=50y50&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;cntwrap&quot;&gt;
+&lt;div class=&quot;f-brk&quot;&gt;
+&lt;a href=&quot;http://music.163.com/user/home?id=${x.user.userId}&quot; class=&quot;s-fc7&quot;&gt;${escape(x.user.nickname)}&lt;/a&gt;
+{if x.user.userType==4}&lt;sup class=&quot;icn u-icn2 u-icn2-music2&quot;&gt;&lt;/sup&gt;
+{elseif x.user.authStatus==1}&lt;sup class=&quot;u-icn u-icn-1&quot;&gt;&lt;/sup&gt;
+{elseif x.user.expertTags &amp;&amp; x.user.expertTags.length&gt;0}&lt;sup class=&quot;u-icn u-icn-84&quot;&gt;&lt;/sup&gt;{/if}
+{if !!x.beRepliedUser}
+&nbsp;回复&nbsp;&lt;a href=&quot;http://music.163.com/user/home?id=${x.beRepliedUser.userId}&quot; class=&quot;s-fc7&quot;&gt;${escape(x.beRepliedUser.nickname)}&lt;/a&gt;
+{if x.beRepliedUser.userType==4}&lt;sup class=&quot;icn u-icn2 u-icn2-music2&quot;&gt;&lt;/sup&gt;
+{elseif x.beRepliedUser.authStatus==1}&lt;sup class=&quot;u-icn u-icn-1&quot;&gt;&lt;/sup&gt;
+{elseif x.beRepliedUser.expertTags &amp;&amp; x.beRepliedUser.expertTags.length&gt;0}&lt;sup class=&quot;u-icn u-icn-84&quot;&gt;&lt;/sup&gt;{/if}
+{/if}
+：${getRichText(escape(x.content),'s-fc7')}
+&lt;/div&gt;
+{if x.beReplied&amp;&amp;x.beReplied.length}
+{var replied = x.beReplied[0]}
+&lt;div class=&quot;que f-brk f-pr s-fc3&quot;&gt;
+&lt;span class=&quot;darr&quot;&gt;&lt;i class=&quot;bd&quot;&gt;◆&lt;/i&gt;&lt;i class=&quot;bg&quot;&gt;◆&lt;/i&gt;&lt;/span&gt;
+{if replied&amp;&amp;replied.content}
+&lt;a class=&quot;s-fc7&quot; href=&quot;http://music.163.com/user/home?id=${replied.user.userId}&quot;&gt;${replied.user.nickname}${getAuthIcon(replied.user)}&lt;/a&gt;：${getRichText(escape(replied.content),'s-fc7')}
+{else}
+该评论已删除
+{/if}
+&lt;/div&gt;
+{/if}
+&lt;div class=&quot;rp&quot;&gt;
+&lt;div class=&quot;time s-fc4&quot;&gt;${timeformat(x.time)}&lt;/div&gt;
+{if GUser&amp;&amp;GUser.userId&amp;&amp;(GUser.userId==x.user.userId||GUser.userId==resUserId)}
+&lt;span class=&quot;dlt&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;s-fc3&quot; data-id=&quot;${x.commentId}&quot; data-type=&quot;delete&quot;&gt;删除&lt;/a&gt;&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;
+&lt;/span&gt;
+{/if}
+&lt;a data-id=&quot;${x.commentId}&quot; data-type=&quot;{if !x.liked}like{else}unlike{/if}&quot; href=&quot;&quot;&gt;&lt;i class=&quot;zan u-icn2 u-icn2-{if x.liked}13{else}12{/if}&quot;&gt;&lt;/i&gt;{if x.likedCount} (${getPlayCount(x.likedCount)}){/if}&lt;/a&gt;
+&lt;span class=&quot;sep&quot;&gt;|&lt;/span&gt;
+&lt;a href=&quot;&quot; class=&quot;s-fc3&quot; data-id=&quot;${x.commentId}&quot; data-type=&quot;reply&quot;&gt;回复&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{/list}
+</textarea> 
+   <textarea name="jst" id="m-wgt-input-1" style="display:none;"> &lt;div class=&quot;m-cmmtipt f-cb f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap holder-parent f-pr&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; placeholder=&quot;${placeholder}&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btns f-cb f-pr&quot;&gt;
+&lt;i class=&quot;icn u-icn u-icn-36 j-flag&quot;&gt;&lt;/i&gt;&lt;i class=&quot;icn u-icn u-icn-41 j-flag&quot;&gt;&lt;/i&gt;
+&lt;a href=&quot;&quot; class=&quot;btn u-btn u-btn-1 j-flag&quot;&gt;评论&lt;/a&gt;
+&lt;span class=&quot;zs s-fc4 j-flag&quot;&gt;110/120&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;corr u-arr&quot;&gt;&lt;em class=&quot;arrline&quot;&gt;◆&lt;/em&gt;&lt;span class=&quot;arrclr&quot;&gt;◆&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-input-2" style="display:none;"> &lt;div class=&quot;rept m-quk m-quk-1 f-pr&quot;&gt;
+&lt;div class=&quot;iner&quot;&gt;
+&lt;div class=&quot;corr u-arr u-arr-1&quot;&gt;&lt;em class=&quot;arrline&quot;&gt;◆&lt;/em&gt;&lt;span class=&quot;arrclr&quot;&gt;◆&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;m-cmmtipt m-cmmtipt-1 f-cb f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap holder-parent f-pr j-wrap&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; placeholder=&quot;${placeholder}&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btns f-cb f-pr&quot;&gt;
+&lt;i class=&quot;icn u-icn u-icn-36 j-flag&quot;&gt;&lt;/i&gt;&lt;i class=&quot;icn u-icn u-icn-41 j-flag&quot;&gt;&lt;/i&gt;
+&lt;a href=&quot;&quot; class=&quot;btn u-btn u-btn-1 j-flag&quot;&gt;回复&lt;/a&gt;
+&lt;span class=&quot;zs s-fc4 j-flag&quot;&gt;110/120&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-input-3" style="display:none;"> &lt;div class=&quot;m-cmmtipt f-cb f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap holder-parent f-pr&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; placeholder=&quot;${placeholder}&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btns f-cb f-pr&quot;&gt;
+&lt;i class=&quot;icn u-icn u-icn-36 j-flag&quot;&gt;&lt;/i&gt;&lt;i class=&quot;icn u-icn u-icn-41 j-flag&quot;&gt;&lt;/i&gt;
+&lt;a class=&quot;btn u-btn u-btn-1 j-flag&quot; href=&quot;&quot;&gt;回复&lt;/a&gt;
+&lt;span class=&quot;zs s-fc4 j-flag&quot;&gt;110/120&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-input-4" style="display:none;"> &lt;div class=&quot;m-cmmtipt f-cb f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap f-pr&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btns f-cb f-pr&quot;&gt;
+&lt;i class=&quot;icn u-icn u-icn-36 j-flag&quot;&gt;&lt;/i&gt;&lt;i class=&quot;icn u-icn u-icn-41 j-flag&quot; style=&quot;display:none;&quot;&gt;&lt;/i&gt;
+&lt;a class=&quot;f-fr u-btn u-btn-1 j-flag&quot; href=&quot;&quot;&gt;发送&lt;/a&gt;&lt;span class=&quot;zs s-fc4 j-flag&quot;&gt;110/120&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-input-5" style="display:none;"> &lt;div class=&quot;m-cmmtipt f-cb f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap holder-parent f-pr&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; placeholder=&quot;${placeholder}&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btns f-cb f-pr&quot;&gt;
+&lt;i class=&quot;icn u-icn u-icn-36 j-flag&quot;&gt;&lt;/i&gt;&lt;i class=&quot;icn u-icn u-icn-41 j-flag&quot;&gt;&lt;/i&gt;
+&lt;a class=&quot;btn u-btn u-btn-1 j-flag&quot; href=&quot;&quot;&gt;评论&lt;/a&gt;
+&lt;span class=&quot;zs s-fc4 j-flag&quot;&gt;110/120&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-wgt-subscribe" style="display:none;">&lt;div class=&quot;lyct lyct-1 m-favgd f-cb&quot;&gt;
+&lt;div class=&quot;tit j-flag&quot;&gt;&lt;i class=&quot;u-icn u-icn-33&quot;&gt;&lt;/i&gt;新歌单&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;
+&lt;div class=&quot;u-load s-fc4&quot;&gt;&lt;i class=&quot;icn&quot;&gt;&lt;/i&gt; 加载中...&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-subscribe-item" style="display:none;">&lt;ul&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+&lt;li data-id=&quot;${x.id}&quot; class=&quot;xtag {if x.trackCount+size&gt;1000}dis{/if}&quot;&gt;
+&lt;div class=&quot;item f-cb&quot;&gt;
+&lt;div class=&quot;left&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;avatar&quot; target=&quot;_blank&quot;&gt;
+&lt;img alt=&quot;&quot; src=&quot;${x.coverImgUrl}?param=40y40&quot;&gt;
+{if x.highQuality}&lt;i class=&quot;u-jp u-icn2 u-icn2-jp5&quot;&gt;&lt;/i&gt;{/if}
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;p class=&quot;name f-thide&quot;&gt;&lt;a class=&quot;s-fc0&quot; href=&quot;&quot; target=&quot;_blank&quot;&gt;${escape(cutStr(x.name,40))}&lt;/a&gt;&lt;/p&gt;
+&lt;p class=&quot;s-fc3&quot;&gt;${x.trackCount}首&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+</textarea> 
+   <textarea name="ntp" id="m-wgt-forward" style="display:none;">&lt;div class=&quot;lyct lyct-1 f-cb&quot;&gt;
+&lt;div class=&quot;m-lyshare&quot;&gt;
+&lt;div class=&quot;u-txtwrap f-pr&quot;&gt;
+&lt;label style=&quot;display: block;&quot; class=&quot;j-flag&quot;&gt;说点什么&lt;/label&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; text = &gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;oper f-cb j-flag&quot;&gt;
+&lt;div class=&quot;face f-fl f-pr&quot;&gt;
+&lt;i class=&quot;u-icn u-icn-36 f-fl j-flag&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;u-icn u-icn-41 j-flag&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;
+&lt;span class=&quot;zs f-fr s-fc3 j-flag&quot;&gt;140&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btnwrap&quot;&gt;
+&lt;a class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;i&gt;转发&lt;/i&gt;&lt;/a&gt;
+&lt;a class=&quot;u-btn2 u-btn2-1 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;i&gt;取消&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;j-flag u-err&quot;&gt;&lt;i class=&quot;u-icn u-icn-25&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-import-ok" style="display:none;">&lt;div class=&quot;lyct f-cb f-tc&quot;&gt;
+&lt;p class=&quot;f-fs3 f-ff2&quot;&gt;&lt;i class=&quot;u-icn u-icn-76&quot;&gt;&lt;/i&gt;&nbsp;&nbsp;歌曲同步完成&lt;/p&gt;
+&lt;div class=&quot;lybtn&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 j-flag&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;查看我的音乐&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-atlist" style="display:none;"> &lt;div class=&quot;u-atlist&quot;&gt;
+{if suggests.length == 0}
+&lt;p&gt;轻敲空格完成输入&lt;/p&gt;
+{else}
+&lt;p&gt;选择最近@的人或直接输入&lt;/p&gt;
+{/if}
+&lt;div class=&quot;lst&quot;&gt;
+{list suggests as suggest}
+&lt;a href=&quot;&quot; data-index=${suggest_index} class=&quot;f-thide j-sgt&quot;&gt;${suggest.nickname}&lt;/a&gt;
+{/list}
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-receiverInput" style="display:none;"> &lt;div class=&quot;ct f-pr&quot;&gt;
+&lt;div class=&quot;u-txtwrap f-pr&quot;&gt;
+&lt;div class=&quot;u-txt txtwrap j-flag&quot;&gt;
+{if receiver}
+&lt;div class=&quot;blk s-fc3 j-receiver&quot;&gt;${receiver.nickname}&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;cls&quot; title=&quot;删除&quot;&gt;&times;&lt;/a&gt;&lt;/div&gt;
+{/if}
+&lt;span class=&quot;holder-parent j-flag&quot; style=&quot;float:left&quot;&gt;
+&lt;input type=&quot;text&quot; class=&quot;txt j-flag&quot; /&gt;
+&lt;label class=&quot;holder j-flag&quot;&gt;选择或输入好友昵称&lt;/label&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;ul class=&quot;full j-flag&quot; style=&quot;_height:182px;display:none&quot;&gt;
+{list users as user}
+&lt;li class=&quot;j-item&quot; data-userId=${user.userId} data-username=${user.nickname} data-index=${user_index}&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;img src=${user.avatarUrl}&gt;${user.nickname}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+&lt;div class=&quot;j-flag&quot; style=&quot;position:absolute;left: -1000px;width:auto;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-receiverList" style="display:none;"> {list users as user}
+&lt;li class=&quot;j-item&quot; data-userId=${user.userId} data-username=${user.nickname} data-index=${user_index}&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;img src=${user.avatarUrl}&gt;${user.nickname}&lt;/a&gt;&lt;/li&gt;
+{/list}
+</textarea> 
+   <textarea name="ntp" id="m-wgt-sharewin" style="display:none;">&lt;div class=&quot;lyct lyct-1 f-cb&quot;&gt;
+&lt;div class=&quot;m-lyshare&quot;&gt;
+&lt;ul class=&quot;m-tabs1 j-flag&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;em&gt;分享给大家&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;em&gt;私信分享&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;u-err j-flag&quot; style=&quot;display:none&quot;&gt;最多选择10位好友&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;j-slogan&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;u-txtwrap f-pr&quot;&gt;
+&lt;textarea class=&quot;u-txt area j-flag&quot; placeholder=&quot;说点什么吧&quot; data-action=&quot;txt&quot;&gt;&lt;/textarea&gt;
+&lt;div class=&quot;info f-fs1 f-pr j-flag&quot; data-action=&quot;search&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;oper f-cb&quot;&gt;
+&lt;div class=&quot;face f-fl f-pr&quot;&gt;
+&lt;i class=&quot;u-icn u-icn-36 f-fl j-flag&quot; data-action=&quot;emot&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;u-icn u-icn-41 f-fl j-flag&quot; data-action=&quot;at&quot;&gt;&lt;/i&gt;
+&lt;i class=&quot;u-icn u-icn-97 j-flag f-pr&quot; data-action=&quot;upload&quot; data-default&gt;&lt;/i&gt;
+&lt;/div&gt;
+&lt;span class=&quot;f-fr s-fc4 j-flag&quot;&gt;140/140&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;f-cb j-flag&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;btnwrap f-fl&quot;&gt;
+&lt;a class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;share&quot;&gt;&lt;i&gt;分享&lt;/i&gt;&lt;/a&gt;
+&lt;a class=&quot;u-btn2 u-btn2-1 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;close&quot;&gt;&lt;i&gt;取消&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;f-cb j-flag f-fr&quot;&gt;
+&lt;div class=&quot;share f-fr&quot;&gt;
+&lt;span class=&quot;f-fl s-fc3&quot;&gt;同时分享到：&lt;/span&gt;
+&lt;ul class=&quot;u-logo u-logo-s f-cb&quot;&gt;
+&lt;li&gt;&lt;a class=&quot;u-slg u-slg-sn j-t&quot; data-action=&quot;sns&quot; data-type=&quot;2&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/api/sns/authorize?snsType=2&amp;clientType=web2&amp;callbackType=Binding&amp;forcelogin=true&quot; title=&quot;新浪微博&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;u-slg u-slg-rr j-t&quot; data-action=&quot;sns&quot; data-type=&quot;4&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/api/sns/authorize?snsType=4&amp;clientType=web2&amp;callbackType=Binding&amp;forcelogin=true&quot; title=&quot;人人网&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;u-slg u-slg-db j-t&quot; data-action=&quot;sns&quot; data-type=&quot;3&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/api/sns/authorize?snsType=3&amp;clientType=web2&amp;callbackType=Binding&amp;forcelogin=true&quot; title=&quot;豆瓣网&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;u-err j-flag&quot;&gt;&lt;i class=&quot;u-icn u-icn-25&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-search-suggest" style="display:none;">{macro listArtists(artists)}
+{list artists as art}
+${art.name|mark}&nbsp;
+{/list}
+{/macro}
+&lt;div class=&quot;m-schlist&quot;&gt;
+&lt;p class=&quot;note s-fc3&quot;&gt;&lt;a class=&quot;s-fc3 xtag&quot; href=&quot;http://music.163.com/search/#/?s=${keyword}&amp;type=1002&quot;&gt;搜“${keyword|cutStr}” 相关用户&lt;/a&gt; &gt;&lt;/p&gt;
+&lt;div class=&quot;rap&quot;&gt;
+{list result.order as index}
+{var lst=result[index]}
+{if !!lst&amp;&amp;!!lst.length}
+&lt;div class=&quot;itm f-cb&quot;&gt;
+{if index==&quot;songs&quot;}
+&lt;h3 class=&quot;hd&quot;&gt;&lt;i class=&quot;icn u-icn u-icn-26&quot;&gt;&lt;/i&gt;&lt;em class=&quot;f-fl&quot;&gt;单曲&lt;/em&gt;&lt;/h3&gt;
+&lt;ul class=&quot;{if index_index%2!=0}odd{/if} f-cb&quot;&gt;
+{list lst as song}
+&lt;li&gt;&lt;a class=&quot;s-fc0 f-thide xtag&quot; href=&quot;http://music.163.com/song?id=${song.id}&quot;&gt;${song.name|mark}-${listArtists(song.artists)}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{elseif index==&quot;artists&quot;}
+&lt;h3 class=&quot;hd&quot;&gt;&lt;i class=&quot;icn u-icn u-icn-27&quot;&gt;&lt;/i&gt;&lt;em class=&quot;f-fl&quot;&gt;歌手&lt;/em&gt;&lt;/h3&gt;
+&lt;ul class=&quot;{if index_index%2!=0}odd{/if} f-cb&quot;&gt;
+{list lst as artist}
+&lt;li&gt;&lt;a class=&quot;s-fc0 f-thide xtag&quot; href=&quot;http://music.163.com/artist?id=${artist.id}&quot;&gt;${artist.name|mark}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{elseif index==&quot;albums&quot;}
+&lt;h3 class=&quot;hd&quot;&gt;&lt;i class=&quot;icn u-icn u-icn-28&quot;&gt;&lt;/i&gt;&lt;em class=&quot;f-fl&quot;&gt;专辑&lt;/em&gt;&lt;/h3&gt;
+&lt;ul class=&quot;{if index_index%2!=0}odd{/if} f-cb&quot;&gt;
+{list lst as album}
+&lt;li&gt;&lt;a class=&quot;s-fc0 f-thide xtag&quot; href=&quot;http://music.163.com/album?id=${album.id}&quot;&gt;${album.name|mark}{if album.artist}-${album.artist.name|mark}{/if}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{elseif index==&quot;playlists&quot;}
+&lt;h3 class=&quot;hd&quot;&gt;&lt;i class=&quot;icn u-icn u-icn-29&quot;&gt;&lt;/i&gt;&lt;em class=&quot;f-fl&quot;&gt;歌单&lt;/em&gt;&lt;/h3&gt;
+&lt;ul class=&quot;{if index_index%2!=0}odd{/if} f-cb&quot;&gt;
+{list lst as playlist}
+&lt;li&gt;&lt;a class=&quot;s-fc0 f-thide xtag&quot; href=&quot;http://music.163.com/playlist?id=${playlist.id}&quot;&gt;${playlist.name|escape|mark}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{elseif index==&quot;mvs&quot;}
+&lt;h3 class=&quot;hd&quot;&gt;&lt;i class=&quot;icn u-icn u-icn-96&quot;&gt;&lt;/i&gt;&lt;em class=&quot;f-fl&quot;&gt;MV&lt;/em&gt;&lt;/h3&gt;
+&lt;ul class=&quot;{if index_index%2!=0}odd{/if} f-cb&quot;&gt;
+{list lst as mv}
+&lt;li&gt;&lt;a class=&quot;s-fc0 f-thide xtag&quot; href=&quot;http://music.163.com/mv?id=${mv.id}&quot;&gt;${mv.name|escape|mark}{if mv.artistName}-${mv.artistName|escape|mark}{/if}&lt;/a&gt;&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{/if}
+&lt;/div&gt;
+{/if}
+{/list}
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-xwgt-share-infobar" style="display:none;">&lt;i class=&quot;highlight&quot;&gt;&lt;/i&gt;&lt;div class=&quot;text f-thide f-fl f-fs1&quot;&gt;${info|escape}&lt;/div&gt;
+{if canChange}&lt;i class=&quot;f-fr icn u-icn2 u-icn2-arr&quot;&gt;&lt;/i&gt;{/if}
+</textarea> 
+   <textarea name="ntp" id="m-xwgt-share-upload" style="display:none;"> &lt;div class=&quot;choose f-cb&quot;&gt;
+&lt;ul class=&quot;pics f-pr f-cb j-flag&quot;&gt;&lt;/ul&gt;
+&lt;div class=&quot;f-pr add j-flag u-icn2 u-icn2-addimg&quot; title=&quot;添加新图片&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;tip s-fc6 j-flag&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-xwgt-share-upload-preview" style="display:none;"> &lt;li class=&quot;f-pr{if fail} z-fail{/if}&quot;&gt;
+{if !fail}
+&lt;i class=&quot;f-img icn&quot;&gt;&lt;/i&gt;
+{else}
+&lt;div class=&quot;mask f-blk f-pa&quot;&gt;&lt;/div&gt;&lt;div class=&quot;f-blk f-pa error&quot;&gt;${fail}&lt;/div&gt;
+{/if}
+&lt;span class=&quot;del f-pa u-icn2 u-icn2-delimg&quot; title=&quot;删除&quot;&gt;&lt;/span&gt;
+&lt;/li&gt;
+</textarea> 
+   <textarea name="jst" id="m-xwgt-share-upload-preview-img" style="display:none;">{if !fail}
+&lt;img class=&quot;f-img&quot; src=&quot;${url}&quot; draggable=false&gt;
+{else}
+&lt;div class=&quot;mask f-blk f-pa&quot;&gt;&lt;/div&gt;&lt;div class=&quot;f-blk f-pa error&quot;&gt;${fail}&lt;/div&gt;
+{/if}
+</textarea> 
+   <textarea name="ntp" id="ntp-alert" style="display:none;">&lt;div class=&quot;lyct f-cb f-tc&quot;&gt;
+&lt;p class=&quot;f-fs1&quot;&gt;
+&lt;i class=&quot;u-icn u-icn-89 j-flag&quot;&gt;&lt;/i&gt;
+&lt;span class=&quot;f-fw1&quot;&gt;&nbsp;&nbsp;&nbsp;&lt;span class=&quot;j-flag&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/p&gt;
+&lt;p class=&quot;mesg j-flag&quot;&gt;&nbsp;&lt;/p&gt;
+&lt;div class=&quot;lybtn&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;知道了&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-layer-commwin" style="display:none;">&lt;div class=&quot;lyct f-tc&quot;&gt;
+&lt;p class=&quot;j-t&quot;&gt;&lt;i class=&quot;u-icn u-icn-90&quot;&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p class=&quot;j-t msg1&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;j-t lsbtn f-tc&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;上传节目&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-layer-commwin-btn" style="display:none;">{list buttons as item}
+&lt;a hidefocus=&quot;true&quot; class=&quot;u-btn2 ${item.klass} {if item.style}${item.style}{else}u-btn2-w2{/if}&quot; href=&quot;http://music.163.com/album?id=2594510#&quot; {if !!item.action}data-action=&quot;${item.action}&quot;{/if}&gt;&lt;i&gt;${item.text}&lt;/i&gt;&lt;/a&gt;
+{/list}
+</textarea> 
+   <textarea name="ntp" id="m-layer-outershare" style="display:none;">&lt;div class=&quot;lyct lyct-1&quot;&gt;
+&lt;ul class=&quot;n-outshr f-cb&quot;&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;wxfrd&quot; class=&quot;logo wxfrd&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;wxfrd&quot; class=&quot;wd&quot;&gt;微信&lt;/a&gt;
+&lt;/li&gt;
+&lt;!--
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;wxevt&quot; class=&quot;logo wxevt&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;wxevt&quot; class=&quot;wd&quot;&gt;微信朋友圈&lt;/a&gt;
+&lt;/li&gt;
+--&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;yxfrd&quot; class=&quot;logo yxfrd&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;yxfrd&quot; class=&quot;wd&quot;&gt;易信&lt;/a&gt;
+&lt;/li&gt;
+&lt;!--
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;yxevt&quot; class=&quot;logo yxevt&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;yxevt&quot; class=&quot;wd&quot;&gt;易信朋友圈&lt;/a&gt;
+&lt;/li&gt;
+--&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;qzone&quot; class=&quot;logo qzone&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;qzone&quot; class=&quot;wd&quot;&gt;QQ空间&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;lofte&quot; class=&quot;logo lofte&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; data-action=&quot;lofte&quot; class=&quot;wd&quot;&gt;LOFTER&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-layer-tip" style="display:none;">&lt;div class=&quot;lyct f-cb f-tc&quot;&gt;
+&lt;div class=&quot;f-fs1 j-flag&quot;&gt;message&lt;/div&gt;
+&lt;div class=&quot;lybtn&quot;&gt;
+&lt;a hidefocus=&quot;true&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; href=&quot;&quot;&gt;&lt;i&gt;知道了&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-outshare-layer" style="display:none;">&lt;div class=&quot;lyct lyct-1 f-cb&quot;&gt;
+&lt;ul class=&quot;m-shareto f-cb j-flag&quot;&gt;
+&lt;li class=&quot;fst&quot; data-action=&quot;sn&quot; data-type=&quot;2&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;logo logo-sn&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;wd s-fc3&quot;&gt;新浪微博&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-action=&quot;tx&quot; data-type=&quot;6&quot; style=&quot;display:none;&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;logo logo-tc&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;wd s-fc3&quot;&gt;腾讯微博&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-action=&quot;rr&quot; data-type=&quot;4&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;logo logo-rr&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;wd s-fc3&quot;&gt;人人网&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-action=&quot;db&quot; data-type=&quot;3&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;logo logo-db&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; class=&quot;wd s-fc3&quot;&gt;豆瓣&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-sharesingle-layer" style="display:none;">&lt;div class=&quot;lyct lyct-1 f-cb&quot;&gt;
+&lt;div class=&quot;m-lyshare&quot;&gt;
+&lt;div class=&quot;u-txtwrap f-pr&quot;&gt;
+&lt;textarea data-action=&quot;txt&quot; class=&quot;u-txt area j-flag&quot;&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;div class=&quot;oper f-cb&quot;&gt;
+&lt;div class=&quot;face f-fl f-pr j-flag&quot;&gt;
+&lt;i data-action=&quot;emt&quot; class=&quot;u-icn u-icn-36 f-fl&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;
+&lt;span class=&quot;zs f-fr s-fc3 j-flag&quot;&gt;140&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;btnwrap&quot;&gt;
+&lt;a data-action=&quot;ok&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2 j-flag&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;i&gt;分享&lt;/i&gt;&lt;/a&gt;
+&lt;a data-action=&quot;cc&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-w2&quot; hidefocus=&quot;true&quot; href=&quot;http://music.163.com/album?id=2594510#&quot;&gt;&lt;i&gt;取消&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;u-err f-hide j-flag&quot;&gt;&lt;i class=&quot;u-icn u-icn-25&quot;&gt;&lt;/i&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-popup-info" style="display:none;">&lt;div class=&quot;lyct f-tc&quot;&gt;
+&lt;div class=&quot;f-cb m-tipinfo&quot;&gt;
+&lt;i class=&quot;u-icn2 u-icn2-11 f-fl&quot;&gt;&lt;/i&gt;
+&lt;div class=&quot;f-fr f-pr f-fs1 tip&quot;&gt;${tip}&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;lsbtn f-tc&quot;&gt;
+&lt;a data-action=&quot;ok&quot; href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-2-h {if oktext.length&lt;=2}u-btn2-w2{/if}&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;${oktext}&lt;/i&gt;&lt;/a&gt;
+&lt;a data-action=&quot;cc&quot; href=&quot;&quot; hidefocus=&quot;true&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-1-h {if cctext.length&lt;=2}u-btn2-w2{/if}&quot;&gt;&lt;i&gt;${cctext}&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-popup-song-buy" style="display:none;">&lt;div class=&quot;lyct m-songpay f-tc&quot;&gt;
+&lt;div class=&quot;f-cb m-tipinfo&quot;&gt;
+&lt;i class=&quot;u-icn2 u-icn2-11 f-fl&quot;&gt;&lt;/i&gt;
+&lt;div class=&quot;f-fr f-pr f-fs1 tip&quot;&gt;${tip}&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;f-pr f-tc&quot;&gt;
+&lt;a data-action=&quot;ok&quot; href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 {if oktext.length&lt;=2}u-btn2-w2{/if}&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;${oktext}&lt;/i&gt;&lt;/a&gt;
+{if showSongText}&lt;a data-action=&quot;song&quot; class=&quot;song s-fc4&quot; href=&quot;&quot;&gt;${songTxt}&lt;/a&gt;{/if}
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-popup-alert" style="display:none;">&lt;div class=&quot;lyct f-tc&quot;&gt;
+&lt;p&gt;&lt;i class=&quot;${icon}&quot;&gt;&lt;/i&gt;&lt;/p&gt;
+&lt;p class=&quot;msg1&quot;&gt;&lt;span class=&quot;f-fs1 s-fc1&quot;&gt;${tip}&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;lsbtn f-tc&quot;&gt;
+{if typeof(oktext) != 'undefined'}&lt;a data-action=&quot;ok&quot; href=&quot;&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-2-h {if oktext.length&lt;=2}u-btn2-w2{/if}&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;${oktext}&lt;/i&gt;&lt;/a&gt;{/if}
+{if typeof(cctext) != 'undefined'}&lt;a data-action=&quot;cc&quot; href=&quot;&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-1-h {if cctext.length&lt;=2}u-btn2-w2{/if}&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;${cctext}&lt;/i&gt;&lt;/a&gt;{/if}
+&lt;/div&gt;
+</textarea> 
+   <textarea name="txt" id="m-donate-tip" style="display:none;">&lt;p&gt;该资源为公益歌曲&lt;p&gt;
+&lt;p&gt;捐赠任意金额（2~4999元）即可无限畅听下载&lt;/p&gt;
+</textarea> 
+   <textarea name="ntp" id="m-simple-share-layer" style="display:none;"> &lt;div class=&quot;lyct lyct-1&quot;&gt;
+&lt;ul class=&quot;n-outshr f-cb&quot;&gt;
+&lt;li data-type=&quot;xlwb&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo xlwb&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;新浪微博&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;wx&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo wxfrd&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;微信&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;yx&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo yxfrd&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;易信好友&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;qzone&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo qzone&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;QQ空间&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;lofter&quot; style=&quot;display:none;&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo lofte&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;LOFTER&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;rr&quot; style=&quot;display:none;&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo rr&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;人人&lt;/a&gt;
+&lt;/li&gt;
+&lt;li data-type=&quot;db&quot; style=&quot;display:none;&quot;&gt;
+&lt;a href=&quot;&quot; class=&quot;logo db&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; class=&quot;wd&quot;&gt;豆瓣&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="txt" id="m-report-point" style="display:none;">&lt;div class=&quot;zcnt&quot;&gt;
+&lt;div class=&quot;lyct f-cb f-tc&quot;&gt;
+&lt;p class=&quot;f-fs2&quot;&gt;悬赏1积分让大家来帮你补歌词，是否继续？&lt;/p&gt;
+&lt;p style=&quot;padding-top: 10px;&quot;&gt;若30天内歌词未补充，积分将退还给您&lt;/p&gt;
+&lt;div class=&quot;lybtn&quot;&gt;
+&lt;a href=&quot;&quot; data-action=&quot;ok&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;继续求&lt;/i&gt;&lt;/a&gt;
+&lt;a href=&quot;&quot; data-action=&quot;cc&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-w2&quot; hidefocus=&quot;true&quot;&gt;&lt;i&gt;取消&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="txt" id="txt-mobilestatus" style="display:none;">&lt;div class=&quot;box f-cb&quot;&gt;
+&lt;div data-action=&quot;invalid&quot; class=&quot;item z-first f-fl&quot;&gt;
+&lt;div class=&quot;icon&quot;&gt;&lt;/div&gt;
+&lt;p&gt;原手机号已停用&lt;/p&gt;
+&lt;p class=&quot;s-fc3&quot;&gt;(使用其他方式验证)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div data-action=&quot;valid&quot; class=&quot;item f-fr&quot;&gt;
+&lt;div class=&quot;icon&quot;&gt;&lt;/div&gt;
+&lt;p&gt;原手机号仍能使用&lt;/p&gt;
+&lt;p class=&quot;s-fc3&quot;&gt;(使用手机验证码验证)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="m-question" style="display:none;">&lt;div class=&quot;m-question&quot;&gt;
+&lt;div&gt;请填写以下安全问题的答案&lt;/div&gt;
+&lt;div class=&quot;qa j-flag f-cb&quot;&gt;
+&lt;label class=&quot;f-fl&quot;&gt;问题：&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class=&quot;qa f-cb&quot;&gt;
+&lt;label class=&quot;f-fl&quot;&gt;回答：&lt;/label&gt;
+&lt;input type=&quot;text&quot; class=&quot;u-txt txt f-fl j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;div class=&quot;u-err f-hide j-flag&quot;&gt;&lt;i class=&quot;u-icn u-icn-25&quot;&gt;&lt;/i&gt;帐号或密码错误&lt;/div&gt;
+&lt;div class=&quot;btnwrap&quot;&gt;
+&lt;a data-action=&quot;back&quot; class=&quot;u-btn2 u-btn2-1 u-btn2-w2&quot; hidefocus=&quot;true&quot; href=&quot;&quot;&gt;&lt;i&gt;上一步&lt;/i&gt;&lt;/a&gt;
+&lt;a data-action=&quot;next&quot; class=&quot;u-btn2 u-btn2-2 u-btn2-w2&quot; hidefocus=&quot;true&quot; href=&quot;&quot;&gt;&lt;i&gt;下一步&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="g-select" style="display:none;">&lt;div class=&quot;u-slt f-ib&quot;&gt;
+&lt;span class=&quot;curr f-thide&quot;&gt;－请选择－&lt;/span&gt;
+&lt;i class=&quot;btn&quot;&gt;&lt;/i&gt;
+&lt;ul class=&quot;f-hide&quot;&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="ntp" id="ntp-linuxlinks" style="display:none;">&lt;div class=&quot;lyct lyct-1&quot;&gt;
+&lt;div class=&quot;dc f-cb&quot;&gt;
+&lt;ul class=&quot;links&quot;&gt;
+&lt;li class=&quot;link f-cb&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;left&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;deepin15（32位）&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;right&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;deepin15（64位）&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&quot;link f-cb&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;left&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;ubuntu16.04（32位）&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;right&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;ubuntu16.04（64位）&lt;/a&gt;
+&lt;/li&gt;
+&lt;li class=&quot;link f-cb&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;left&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;ubuntu14.04（32位）&lt;/a&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510&quot; class=&quot;right&quot; target=&quot;_blank&quot; hidefocus=&quot;true&quot; title=&quot;Linux版下载&quot;&gt;ubuntu14.04（64位）&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="g-select-item" style="display:none;">{list options as o}
+&lt;li class=&quot;f-thide&quot; data-index=&quot;${o_index}&quot;&gt;&lt;a href=&quot;&quot;&gt;${o|filter}&lt;/a&gt;&lt;/li&gt;
+{/list}
+</textarea> 
+   <textarea name="ntp" id="m-download-layer" style="display:none;">&lt;h3 class=&quot;f-tc&quot;&gt;使用云音乐客户端&lt;/h3&gt;
+&lt;h4 class=&quot;f-tc s-fc3&quot;&gt;即可无限下载高品质音乐&lt;/h4&gt;
+&lt;div class=&quot;f-cb wrap&quot;&gt;
+&lt;div class=&quot;left&quot;&gt;
+&lt;div data-action=&quot;download&quot; data-src=&quot;http://music.163.com/api/osx/download/latest&quot; class=&quot;btn btn-mac&quot;&gt;&lt;i&gt;&lt;/i&gt;Mac版&lt;span class=&quot;ver j-flag&quot;&gt;V1.9.1&lt;/span&gt;&lt;/div&gt;
+&lt;div data-action=&quot;download&quot; data-src=&quot;http://music.163.com/api/pc/download/latest&quot; class=&quot;btn f-hide&quot;&gt;&lt;i&gt;&lt;/i&gt;PC版&lt;span class=&quot;ver j-flag&quot;&gt;V1.9.1&lt;/span&gt;&lt;/div&gt;
+&lt;div data-action=&quot;orpheus&quot; class=&quot;btn btn-installed j-flag&quot;&gt;已安装PC版&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;right&quot;&gt;
+&lt;div class=&quot;qtcode&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;s-fc3 f-tc&quot;&gt;扫描下载手机版&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="com-artists-title" style="display:none;">{var title=&quot;&quot;}
+{if artists &amp;&amp; artists.length}
+{list artists as x}
+{if x}
+{var title = title + x.name}
+{if x_index &lt; x_length - 1}
+{var title = title + &quot; / &quot;}
+{/if}
+{/if}
+{/list}
+{/if}
+${escape(title)}
+</textarea> 
+   <textarea name="jst" id="com-mv-artists" style="display:none;">{if artists &amp;&amp; artists.length}
+&lt;span class=&quot;${boxClazz}&quot; title=&quot;${comJST('com-artists-title', artists)}&quot;&gt;
+{list artists as x}
+{if !!x}
+{if !!x.id}
+&lt;a href=&quot;http://music.163.com/artist?id=${x.id}&quot; class=&quot;${clazz}&quot;&gt;${mark(escape(x.name))}&lt;/a&gt;
+{else}
+&lt;span class=&quot;${clazz}&quot;&gt;${mark(escape(x.name))}&lt;/span&gt;
+{/if}
+{if x_index &lt; x_length - 1}&nbsp;/&nbsp;{/if}
+{/if}
+{/list}
+&lt;/span&gt;
+{/if}
+</textarea> 
+   <textarea name="jst" id="com-album-artists" style="display:none;">${comJST('com-mv-artists', artists, clazz, mark, boxClazz)}
+</textarea> 
+   <textarea name="ntp" id="ntp-portrait" style="display:none;">&lt;div class=&quot;m-emts z-show&quot;&gt;
+&lt;div class=&quot;j-flag emtwrap f-cb&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;page&quot;&gt;
+&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; hidefocus=&quot;true&quot; class=&quot;j-flag u-btn u-btn-prv&quot;&gt;&lt;/a&gt;&lt;em class=&quot;j-flag s-fc3&quot;&gt;1/2&lt;/em&gt;&lt;a href=&quot;http://music.163.com/album?id=2594510#&quot; hidefocus=&quot;true&quot; class=&quot;j-flag u-btn u-btn-nxt&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="jst-portrait" style="display:none;">{list plist as item}
+&lt;span title=&quot;${item.key}&quot; class=&quot;emtitm&quot;&gt;&lt;img data-text=&quot;${item.key}&quot; data-url=&quot;${item.key|purl}&quot; class=&quot;f-alpha&quot; src=&quot;${item.key|purl}&quot;&gt;&lt;/span&gt;
+{/list}
+</textarea> 
+   <textarea name="ntp" id="m-wgt-song-box" style="display:none;">&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;j-flag&quot;&gt;&lt;/div&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-song-list" style="display:none;">&lt;table class=&quot;m-table {if type=='rank'}m-table-rank{/if}&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;first {if type=='rank'}wrk{else}w1{/if}&quot;&gt;&lt;div class=&quot;wp&quot;&gt;&nbsp;&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div class=&quot;wp&quot;&gt;歌曲标题&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w2&quot;&gt;&lt;div class=&quot;wp&quot;&gt;时长&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w3&quot;&gt;&lt;div class=&quot;wp&quot;&gt;歌手&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w4&quot;&gt;&lt;div class=&quot;wp&quot;&gt;专辑&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2==0}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+&lt;td class=&quot;left&quot;&gt;
+&lt;div class=&quot;hd {if type=='rank'}rank{/if}&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+{if type=='rank'}
+&lt;div class=&quot;rk rk-1&quot;&gt;
+{if x.lastRank&gt;=0}
+{if y-x.lastRank&gt;0}
+&lt;span class=&quot;ico u-icn u-icn-74 s-fc10&quot;&gt;${y-x.lastRank}&lt;/span&gt;
+{elseif y-x.lastRank==0}
+&lt;span class=&quot;ico u-icn u-icn-72 s-fc4&quot;&gt;0&lt;/span&gt;
+{else}
+&lt;span class=&quot;ico u-icn u-icn-73 s-fc9&quot;&gt;${x.lastRank-y}&lt;/span&gt;
+{/if}
+{else}
+&lt;span class=&quot;u-icn u-icn-75&quot;&gt;&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot; s-fc3&quot;&gt;
+&lt;span class=&quot;u-dur {if canDel}candel{/if}&quot;&gt;${dur2time(x.duration/1000)}{if x.ftype==2}&lt;i title=&quot;歌曲来自咪咕音乐&quot; class=&quot;migu u-icn2 u-icn2-14&quot;&gt;&lt;/i&gt;{/if}&lt;/span&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot; title=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot;&gt;${getArtistName(x.artists)}&lt;/div&gt;
+&lt;/td&gt;
+{if type=='dayRcmd'}
+&lt;td class=&quot;hascls&quot;&gt;
+&lt;div class=&quot;f-pr&quot;&gt;
+&lt;div class=&quot;text&quot;&gt;{if x.album}&lt;a href=&quot;http://music.163.com/album?id=${x.album.id}&quot; title=&quot;${x.album.name}&quot;&gt;${x.album.name}&lt;/a&gt;{/if}&lt;/div&gt;
+&lt;a href=&quot;&quot; data-res-action=&quot;dislike&quot; data-res-id=&quot;${x.id}&quot; data-res-alg=&quot;${x.alg}&quot; class=&quot;cls u-icn u-icn-80 f-tid icn-dislike&quot; title=&quot;不感兴趣&quot;&gt;不感兴趣&lt;/a&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+{else}
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot;&gt;{if x.album}&lt;a href=&quot;http://music.163.com/album?id=${x.album.id}&quot; title=&quot;${x.album.name}&quot;&gt;${x.album.name}&lt;/a&gt;{/if}&lt;/div&gt;
+&lt;/td&gt;
+{/if}
+&lt;/tr&gt;
+{/list}
+&lt;/tbody&gt;
+&lt;/table&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-album-list" style="display:none;">&lt;table class=&quot;m-table {if type=='rank'}m-table-rank{/if}&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;first {if type=='rank'}wrk{else}w1{/if}&quot;&gt;&lt;div class=&quot;wp&quot;&gt;&nbsp;&lt;/div&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div class=&quot;wp&quot;&gt;歌曲标题&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w2-1&quot;&gt;&lt;div class=&quot;wp&quot;&gt;时长&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w3&quot;&gt;&lt;div class=&quot;wp&quot;&gt;歌手&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2==0}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+&lt;td class=&quot;left&quot;&gt;
+&lt;div class=&quot;hd {if type=='rank'}rank{/if}&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+{if type=='rank'}
+&lt;div class=&quot;rk rk-1&quot;&gt;
+{if x.lastRank&gt;=0}
+{if y-x.lastRank&gt;0}
+&lt;span class=&quot;ico u-icn u-icn-74 s-fc10&quot;&gt;${y-x.lastRank}&lt;/span&gt;
+{elseif y-x.lastRank==0}
+&lt;span class=&quot;ico u-icn u-icn-72 s-fc4&quot;&gt;0&lt;/span&gt;
+{else}
+&lt;span class=&quot;ico u-icn u-icn-73 s-fc9&quot;&gt;${x.lastRank-y}&lt;/span&gt;
+{/if}
+{else}
+&lt;span class=&quot;u-icn u-icn-75&quot;&gt;&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot; s-fc3&quot;&gt;
+&lt;span class=&quot;u-dur {if canDel}candel{/if}&quot;&gt;${dur2time(x.duration/1000)}{if x.ftype==2}&lt;i title=&quot;歌曲来自咪咕音乐&quot; class=&quot;migu u-icn2 u-icn2-14&quot;&gt;&lt;/i&gt;{/if}&lt;/span&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot; title=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot;&gt;${getArtistName(x.artists)}&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+{/list}
+&lt;/tbody&gt;
+&lt;/table&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-song-top50-list" style="display:none;">&lt;table class=&quot;m-table m-table-1 m-table-4&quot;&gt;
+&lt;tbody&gt;
+{var preScore = 100}
+{list beg..end as y}
+{var x=xlist[y]}
+{var score = Math.min(preScore, x.score);preScore = score;}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2==0}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+&lt;td class=&quot;w1&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;w2-1 s-fc3&quot;&gt;
+&lt;span class=&quot;u-dur {if canDel}candel{/if}&quot;&gt;${dur2time(x.duration/1000)}{if x.ftype==2}&lt;i title=&quot;歌曲来自咪咕音乐&quot; class=&quot;migu u-icn2 u-icn2-14&quot;&gt;&lt;/i&gt;{/if}&lt;/span&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;w4&quot;&gt;
+&lt;div class=&quot;text&quot;&gt;{if x.album}&lt;a href=&quot;http://music.163.com/album?id=${x.album.id}&quot; title=&quot;${x.album.name}&quot;&gt;${x.album.name}&lt;/a&gt;{/if}&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;w5&quot;&gt;&lt;span class=&quot;hot u-hot&quot;&gt;&lt;i style=&quot;width:${score*0.92}%&quot;&gt;&lt;i&gt;&lt;/i&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+{/list}
+&lt;/tbody&gt;
+&lt;/table&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-song-rank-list" style="display:none;">&lt;table class=&quot;m-table m-table-rank&quot;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;first w1&quot;&gt;&lt;/th&gt;
+&lt;th&gt;&lt;div class=&quot;wp&quot;&gt;标题&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w2-1&quot;&gt;&lt;div class=&quot;wp&quot;&gt;时长&lt;/div&gt;&lt;/th&gt;
+&lt;th class=&quot;w3&quot;&gt;&lt;div class=&quot;wp&quot;&gt;歌手&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2==0}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+{if y&lt;3}
+&lt;td&gt;
+&lt;div class=&quot;hd&quot;&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+&lt;div class=&quot;rk &quot;&gt;
+{if x.lastRank&gt;=0}
+{if y-x.lastRank&gt;0}
+&lt;span class=&quot;ico u-icn u-icn-74 s-fc10&quot;&gt;${y-x.lastRank}&lt;/span&gt;
+{elseif y-x.lastRank==0}
+&lt;span class=&quot;ico u-icn u-icn-72 s-fc4&quot;&gt;0&lt;/span&gt;
+{else}
+&lt;span class=&quot;ico u-icn u-icn-73 s-fc9&quot;&gt;${x.lastRank-y}&lt;/span&gt;
+{/if}
+{else}
+&lt;span class=&quot;u-icn u-icn-75&quot;&gt;&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;rank&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;{if x.album}&lt;img class=&quot;rpic&quot; src=&quot;${x.album.picUrl}?param=50y50&amp;quality=100&quot;&gt;{/if}&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+{else}
+&lt;td&gt;
+&lt;div class=&quot;hd&quot;&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+&lt;div class=&quot;rk &quot;&gt;
+{if x.lastRank&gt;=0}
+{if y-x.lastRank&gt;0}
+&lt;span class=&quot;ico u-icn u-icn-74 s-fc10&quot;&gt;${y-x.lastRank}&lt;/span&gt;
+{elseif y-x.lastRank==0}
+&lt;span class=&quot;ico u-icn u-icn-72 s-fc4&quot;&gt;0&lt;/span&gt;
+{else}
+&lt;span class=&quot;ico u-icn u-icn-73 s-fc9&quot;&gt;${x.lastRank-y}&lt;/span&gt;
+{/if}
+{else}
+&lt;span class=&quot;u-icn u-icn-75&quot;&gt;&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+{/if}
+&lt;td class=&quot; s-fc3&quot;&gt;
+&lt;span class=&quot;u-dur {if canDel}candel{/if}&quot;&gt;${dur2time(x.duration/1000)}{if x.ftype==2}&lt;i title=&quot;歌曲来自咪咕音乐&quot; class=&quot;migu u-icn2 u-icn2-14&quot;&gt;&lt;/i&gt;{/if}&lt;/span&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot; title=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot;&gt;${getArtistName(x.artists)}&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+{/list}
+&lt;/tbody&gt;
+&lt;/table&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-song-pgm-list" style="display:none;">&lt;table class=&quot;m-table m-table-prog&quot;&gt;
+&lt;tbody id=&quot;song-list&quot;&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2!=0}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+&lt;td class=&quot;first col1&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;col2&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;col3 s-fc3&quot;&gt;
+&lt;span class=&quot;u-dur {if canDel}candel{/if}&quot;&gt;${dur2time(x.duration/1000)}{if x.ftype==2}&lt;i title=&quot;歌曲来自咪咕音乐&quot; class=&quot;migu u-icn2 u-icn2-14&quot;&gt;&lt;/i&gt;{/if}&lt;/span&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;col4&quot;&gt;
+&lt;div class=&quot;text&quot; title=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot;&gt;${getArtistName(x.artists)}&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;col5&quot;&gt;
+&lt;div class=&quot;text&quot;&gt;{if x.album}&lt;a href=&quot;http://music.163.com/album?id=${x.album.id}&quot; title=&quot;${x.album.name}&quot;&gt;${x.album.name}&lt;/a&gt;{/if}&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+{/list}
+&lt;/tbody&gt;
+&lt;/table&gt;
+</textarea> 
+   <textarea name="jst" id="m-wgt-song-listen" style="display:none;"> &lt;ul&gt;
+{list beg..end as y}
+{var x=xlist[y]}
+{if extData&amp;&amp;extData.limit&amp;&amp;y&gt;=extData.limit}
+{break}
+{/if}
+{var from=getFrom()}
+&lt;li id=&quot;${x.id|seed}&quot; {if y%2 !=0 }class='even'{/if}&gt;
+&lt;div class=&quot;hd &quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}.&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class=&quot;song&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name}&quot;&gt;${x.name}&lt;/b&gt;&lt;/a&gt;
+&lt;span class='ar s-fc8'&gt; &lt;em&gt;-&lt;/em&gt;
+${getArtistName(x.artists, 's-fc8')}
+&lt;/span&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;opt&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot; data-res-type=&quot;18&quot; data-res-id=&quot;${x.id}&quot; data-res-action=&quot;addto&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;subscribe&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;下载&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;tops&quot;&gt;
+&lt;span class=&quot;bg&quot; style='width:${x.score*100/x.max}%;'&gt;&lt;/span&gt;
+{if extData.showCount&amp;&amp;x.playCount}&lt;span class=&quot;times f-ff2&quot;&gt;${x.playCount}次&lt;/span&gt;{/if}
+&lt;/div&gt;
+&lt;/li&gt;
+{/list}
+&lt;/ul&gt;
+{if extData&amp;&amp;extData.limit&amp;&amp;xlist.length&gt;extData.limit}
+&lt;div class=&quot;more&quot;&gt;
+&lt;a href=&quot;http://music.163.com/user/songs/rank?id=${hostId}&quot; &gt;查看更多&gt;&lt;/a&gt;
+&lt;/div&gt;
+{/if}
+</textarea> 
+   <textarea name="jst" id="m-wgt-purchased-song-list" style="display:none;"> {list beg..end as y}
+{var x=xlist[y]}
+&lt;tr id=&quot;${x.id|seed}&quot; class=&quot;{if y%2==1}even{/if} {if disable(x)}js-dis{/if}&quot;&gt;
+&lt;td class=&quot;left&quot;&gt;
+&lt;div class=&quot;hd {if type=='rank'}rank{/if}&quot;&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;play&quot; {if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if} class=&quot;ply {if isPlaying(x)}ply-z-slt{/if}&quot;&gt;&nbsp;&lt;/span&gt;
+&lt;span class=&quot;num&quot;&gt;${y+1}&lt;/span&gt;
+{if type=='rank'}
+&lt;div class=&quot;rk rk-1&quot;&gt;
+{if x.lastRank&gt;=0}
+{if y-x.lastRank&gt;0}
+&lt;span class=&quot;ico u-icn u-icn-74 s-fc10&quot;&gt;${y-x.lastRank}&lt;/span&gt;
+{elseif y-x.lastRank==0}
+&lt;span class=&quot;ico u-icn u-icn-72 s-fc4&quot;&gt;0&lt;/span&gt;
+{else}
+&lt;span class=&quot;ico u-icn u-icn-73 s-fc9&quot;&gt;${x.lastRank-y}&lt;/span&gt;
+{/if}
+{else}
+&lt;span class=&quot;u-icn u-icn-75&quot;&gt;&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+{/if}
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;u-hasopt&quot;&gt;
+&lt;div class=&quot;f-cb&quot;&gt;
+&lt;div class=&quot;tt&quot;&gt;
+&lt;div class=&quot;ttc&quot;&gt;
+&lt;span class=&quot;txt&quot;&gt;
+{var alia=songAlia(x)}
+&lt;a href=&quot;http://music.163.com/song?id=${x.id}&quot;&gt;&lt;b title=&quot;${x.name|escape}{if alia} - (${alia|escape}){/if}&quot;&gt;${x.name|escape}&lt;/b&gt;&lt;/a&gt;{if alia}&lt;span title=&quot;${alia|escape}&quot; class=&quot;s-fc8&quot;&gt; - (${alia|escape})&lt;/span&gt;{/if}
+{if x.mvid&gt;0}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-action=&quot;mv&quot; title=&quot;播放mv&quot; class=&quot;mv&quot;&gt;MV&lt;/span&gt;
+{/if}
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;opt hshow&quot;&gt;
+&lt;a class=&quot;u-icn u-icn-81 icn-add&quot; href=&quot;&quot; title=&quot;添加到播放列表&quot; hidefocus=&quot;true&quot;
+data-res-type=&quot;18&quot;
+data-res-id=&quot;${x.id}&quot;
+data-res-action=&quot;addto&quot;
+{if from}data-res-from=&quot;${from.fid}&quot; data-res-data=&quot;${from.fdata}&quot;{/if}&gt;&lt;/a&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;fav&quot; class=&quot;icn icn-fav&quot; title=&quot;收藏&quot;&gt;&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;share&quot; data-res-name=&quot;${x.name}&quot; data-res-author=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot; {if x.album}data-res-pic=&quot;${x.album.picUrl}&quot;{/if} class=&quot;icn icn-share&quot; title=&quot;分享&quot;&gt;分享&lt;/span&gt;
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;download&quot; class=&quot;icn icn-dl&quot; title=&quot;下载&quot;&gt;&lt;/span&gt;
+{if canDel}
+&lt;span data-res-id=&quot;${x.id}&quot; data-res-type=&quot;18&quot; data-res-action=&quot;delete&quot; class=&quot;icn icn-del&quot; title=&quot;删除&quot;&gt;删除&lt;/span&gt;
+{/if}
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot; title=&quot;{list x.artists as art}${art.name}{if art_index&lt;x.artists.length-1}/{/if}{/list}&quot;&gt;${getArtistName(x.artists)}&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;&quot;&gt;
+&lt;div class=&quot;text&quot;&gt;{if x.album}&lt;a href=&quot;http://music.163.com/album?id=${x.album.id}&quot; title=&quot;${x.album.name}&quot;&gt;${x.album.name}&lt;/a&gt;{/if}&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class=&quot;s-fc3&quot;&gt;${formatTime(x.paidTime)}&lt;/td&gt;
+&lt;/tr&gt;
+{/list}
+</textarea> 
+   <textarea name="ntp" id="m-msg-private-send" style="display:none;">&lt;div class=&quot;lyct lyct-1 f-cb&quot;&gt;
+&lt;div class=&quot;m-lyshare m-plshare&quot;&gt;
+&lt;div class=&quot;u-err j-flag&quot; style=&quot;display: none;&quot;&gt;最多选择10位好友&lt;/div&gt;
+&lt;div class=&quot;item item-1 f-cb&quot;&gt;
+&lt;label&gt;发 给：&lt;/label&gt;
+&lt;div class=&quot;ct f-pr j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;item f-cb&quot;&gt;
+&lt;label&gt;内 容：&lt;/label&gt;
+&lt;div class=&quot;ct j-flag&quot;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</textarea> 
+  </div> 
+  <script src="//s3.music.126.net/sep/s/2/core.js?451ac11b7c4c2cbcd0944e15ec9f82f9" type="text/javascript"></script>
+  <script src="//s3.music.126.net/sep/s/2/pt_content_album.js?977d3b6a1e5c3ea5dc03b73d6a03a577" type="text/javascript"></script>  
+  <script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-38766552-1'],['_setLocalGifPath', '/UA-38766552-1/__utm.gif'],['_setLocalRemoteServerMode']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.async = true;
+ga.src = '//wr.da.netease.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();//fix ipad下的一个bug
+if (navigator.userAgent.indexOf('iPad') != -1) {
+iframeHeight = Math.max(
+Math.max(document.body.scrollHeight, document.documentElement.scrollHeight),
+Math.max(document.body.offsetHeight, document.documentElement.offsetHeight),
+Math.max(document.body.clientHeight, document.documentElement.clientHeight)
+);
+top.document.body.style.height = iframeHeight + 20 + 'px';
+}</script> 
+ </body>
+</html>

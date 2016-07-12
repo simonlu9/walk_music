@@ -24,138 +24,145 @@ import org.music.bean.Artist;
 import org.music.bean.User;
 
 public class Analy {
-	static final long YEAR_MICO_SEC = (3600*24*365*1000);
+	static final long YEAR_MICO_SEC = (3600 * 24 * 365 * 1000);
 	static ArrayDeque<File> queue = new ArrayDeque<File>();
 
 	public static void main(String[] args) throws IOException, JSONException {
 		File f = new File("E:\\download\\music.163.com\\artist-home");
-//		String[] files = f.list();
-//		for(String file : files)
-//		System.out.println(file);
+		// String[] files = f.list();
+		// for(String file : files)
+		// System.out.println(file);
 		queue.add(f);
 		File[] fileArray;
-		//FileUtils.listFiles(arg0, arg1, arg2)
+		// FileUtils.listFiles(arg0, arg1, arg2)
 		while (!queue.isEmpty()) {
 			File currentFile = queue.pop();
-			if(currentFile.isDirectory()){
-				 fileArray = currentFile.listFiles();
-			
-					for (int i = 0; i < fileArray.length; i++) {
-						// 递归调用
-						if(fileArray[i].isDirectory()){
-							//System.out.println(fileArray[i].getName());
-							queue.add(fileArray[i]);
-						}else{
-							if(fileArray[i].getName().endsWith(".html")){
-								
-								//parseUserHtml(fileArray[i]);
-								parseArtistHtml(fileArray[i]);
-								break;
-							}
-							
-							
-							
+			if (currentFile.isDirectory()) {
+				fileArray = currentFile.listFiles();
+
+				for (int i = 0; i < fileArray.length; i++) {
+					// 递归调用
+					if (fileArray[i].isDirectory()) {
+						// System.out.println(fileArray[i].getName());
+						queue.add(fileArray[i]);
+					} else {
+						if (fileArray[i].getName().endsWith(".html")) {
+
+							// parseUserHtml(fileArray[i]);
+							parseArtistHtml(fileArray[i]);
+							break;
 						}
-						
+
 					}
-					
-				
-			}else{
-				
+
+				}
+
+			} else {
+
 			}
-			
+
 		}
 	}
-	
-	public static void parseUserHtml(File file) throws IOException{
+
+	public static void parseUserHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Element userInfo = doc.select("div.name").get(0);
 		User user = new User();
-		user.setUsername(userInfo.select("span.tit").get(0).text()); //用户明
-		user.setLevel(Integer.parseInt(userInfo.select("span.lev").get(0).text()));//级别
-		
-	   user.setGender(userInfo.select(".u-icn-01").size()>0?1:(userInfo.select(".u-icn-02").size()>0?2:0));//性别
-	   Element tabBox = doc.getElementById("tab-box");
-	   user.setFeed_num(Integer.parseInt(tabBox.getElementById("event_count").text()));
-	   user.setFollow_num(Integer.parseInt(tabBox.getElementById("follow_count").text()));
-	   user.setFans_num(Integer.parseInt(tabBox.getElementById("fan_count").text()));
-		
-	   if(doc.hasClass("f-brk")){
-		   Element sign =  doc.select(".f-brk").get(0);
-		   user.setSign(sign.text());//个性签名
-	   }
-	   
-	   Element age = doc.getElementById("age");
-	   if(age!=null){
-		   long ageMico = Long.parseLong(age.attr("data-age"));
-		   Calendar cal = Calendar.getInstance();
-		   cal.setTimeInMillis(ageMico);
-		   user.setAge(2016- cal.get(Calendar.YEAR));
-		
-		   Elements area = age.parent().select("span");
-		   if(area.size()>0){
-			   user.setArea(area.select("span").get(0).text().split("：")[1]); //区域
-		   }
-	   }
-	
-	   
-	   user.setRecord(getNumbers((doc.getElementById("rHeader").select("h4").get(0).text())));//听过记录
-	   user.setUid(getNumbers(doc.getElementById("m-record").attr("data-uid")));
-	   user.setAvatar(doc.getElementById("ava").select("img").get(0).attr("src")); //头像
-	   
-	   if(doc.select(".u-slg").size()>0){
-		   user.setWeibo_id(getNumbers(doc.select(".u-slg").get(0).attr("href")));
-	   }
-	   //收藏的歌单 
-	   //创建的歌单
-	   
-	   
-	System.out.println(user);
-		
+		user.setUsername(userInfo.select("span.tit").get(0).text()); // 用户明
+		user.setLevel(Integer.parseInt(userInfo.select("span.lev").get(0).text()));// 级别
+
+		user.setGender(userInfo.select(".u-icn-01").size() > 0 ? 1 : (userInfo.select(".u-icn-02").size() > 0 ? 2 : 0));// 性别
+		Element tabBox = doc.getElementById("tab-box");
+		user.setFeed_num(Integer.parseInt(tabBox.getElementById("event_count").text()));
+		user.setFollow_num(Integer.parseInt(tabBox.getElementById("follow_count").text()));
+		user.setFans_num(Integer.parseInt(tabBox.getElementById("fan_count").text()));
+
+		if (doc.hasClass("f-brk")) {
+			Element sign = doc.select(".f-brk").get(0);
+			user.setSign(sign.text());// 个性签名
+		}
+
+		Element age = doc.getElementById("age");
+		if (age != null) {
+			long ageMico = Long.parseLong(age.attr("data-age"));
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(ageMico);
+			user.setAge(2016 - cal.get(Calendar.YEAR));
+
+			Elements area = age.parent().select("span");
+			if (area.size() > 0) {
+				user.setArea(area.select("span").get(0).text().split("：")[1]); // 区域
+			}
+		}
+
+		user.setRecord(getNumbers((doc.getElementById("rHeader").select("h4").get(0).text())));// 听过记录
+		user.setUid(getNumbers(doc.getElementById("m-record").attr("data-uid")));
+		user.setAvatar(doc.getElementById("ava").select("img").get(0).attr("src")); // 头像
+
+		if (doc.select(".u-slg").size() > 0) {
+			user.setWeibo_id(getNumbers(doc.select(".u-slg").get(0).attr("href")));
+		}
+		// 收藏的歌单
+		// 创建的歌单
+
+		System.out.println(user);
+
 	}
-	
-	 //截取数字  
-	   public static Long getNumbers(String content) {  
-		 //  System.out.println(content);
-	       Pattern pattern = Pattern.compile("\\d+");  
-	       Matcher matcher = pattern.matcher(content);  
-	       while (matcher.find()) {  
-	           return Long.parseLong(matcher.group(0));  
-	       }  
-	       return (long) 0;  
-	   }  
+
+	// 截取数字
+	public static Long getNumbers(String content) {
+		// System.out.println(content);
+		Pattern pattern = Pattern.compile("\\d+");
+		Matcher matcher = pattern.matcher(content);
+		while (matcher.find()) {
+			return Long.parseLong(matcher.group(0));
+		}
+		return (long) 0;
+	}
 
 	public void parseAritstHtml(File file) throws IOException {
-		
 
 	}
-	
-	public void parseSongHtml(File file) throws IOException{
+
+	public void parseSongHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 	}
-	public static void parseArtistHtml(File file) throws IOException, JSONException{
+
+	public static void parseArtistHtml(File file) throws IOException, JSONException {
 		Document doc = Jsoup.parse(file, "UTF-8");
-		//System.out.println(file.getPath());
-		if(doc.getElementById("song-list-pre-cache")!=null){
+		// System.out.println(file.getPath());
+		Elements metas = doc.select("meta");
+		Artist artist = new Artist();
+		artist.setName(metas.get(2).attr("content"));
+		artist.setAvatar(metas.get(6).attr("content"));
+		artist.setId(getNumbers(metas.get(7).attr("content")));
+
+		artist.setDesc(metas.get(8).attr("content"));
+		System.out.println(artist);
+		if (doc.getElementById("song-list-pre-cache") != null) {
 			String content = doc.getElementById("song-list-pre-cache").select("textarea").get(0).text();
-			  JSONArray jsonArr = new JSONArray(content);
-			  Artist artist = new Artist();
-			   for(int i=0;i<jsonArr.length();i++)
-	    	      {   
-				   	JSONObject  songInfo = jsonArr.getJSONObject(i);
-				   	org.music.bean.Track track = new org.music.bean.Track();
-				   //	track.setDuration(duration);
+			JSONArray jsonArr = new JSONArray(content);
+
+			for (int i = 0; i < jsonArr.length(); i++) {
+				JSONObject songInfo = jsonArr.getJSONObject(i);
+				org.music.bean.Track track = new org.music.bean.Track();
+				// track.setDuration(duration);
+				track.setDuration(songInfo.getInt("duration"));
+				track.setScore(songInfo.getInt("score"));
+				track.setId(songInfo.getLong("id"));
+				track.setName(songInfo.getString("name"));
 				
-				   		
-	        	  			System.out.println(	jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
-	        	  	
-	 	      }
-	         
-		}else{
-			
+
+				System.out.println(track);
+
+				// System.out.println(
+				// jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
+
+			}
+
+		} else {
+
 		}
-		
-		
-		
+
 	}
 }

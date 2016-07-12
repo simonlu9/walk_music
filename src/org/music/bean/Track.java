@@ -3,6 +3,9 @@ package org.music.bean;
 import org.json.JSONObject;
 
 public class Track {
+		private long id;
+		private long artistId;
+		private long albumId;
 		private long copyrightId;
 		private int duration; //Ê±³¤
 		private int score;//ÆÀ·Ö
@@ -12,6 +15,19 @@ public class Track {
 		private int mvid; //mvid
 		private int fee;
 		private int ftype;
+		
+		@Override
+		public String toString() {
+		// TODO Auto-generated method stub
+			return "id:"+id+"	name:"+name+"		score"+score+"	duration"+duration;
+		}
+		
+		public long getId() {
+			return id;
+		}
+		public void setId(long id) {
+			this.id = id;
+		}
 		public long getCopyrightId() {
 			return copyrightId;
 		}
