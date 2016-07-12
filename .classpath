@@ -18,13 +18,13 @@
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/jedis-2.0.0.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/json-path-0.8.1.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/json-smart-1.1.1.jar"/>
-	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/jsoup-1.7.2.jar"/>
+	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/jsoup-1.7.2.jar" sourcepath="F:/download/jsoup-1.9.2-sources.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/slf4j-api-1.7.6.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/slf4j-log4j12-1.7.6.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/webmagic-core-0.5.2.jar" sourcepath="F:/download/webmagic-core-0.5.2-sources.jar"/>
-	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/webmagic-extension-0.5.2.jar"/>
+	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/webmagic-extension-0.5.2.jar" sourcepath="F:/download/webmagic-extension-0.5.2-sources.jar"/>
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/xsoup-0.2.4.jar"/>
 	<classpathentry kind="lib" path="F:/download/jsoup-1.9.2.jar" sourcepath="F:/download/jsoup-1.9.2-sources.jar"/>
 	<classpathentry kind="lib" path="F:/download/json.jar"/>
