@@ -144,7 +144,7 @@ public class Analy {
 	    	      {
 				   	JSONObject  songInfo = jsonArr.getJSONObject(i);
 				   	org.music.bean.Track track = new org.music.bean.Track();
-				   	track.setDuration(duration);
+				   //	track.setDuration(duration);
 				
 				   		
 	        	  			System.out.println(	jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
