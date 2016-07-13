@@ -11,6 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.sound.midi.Track;
+import javax.xml.stream.events.EndElement;
 
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
@@ -20,7 +21,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.music.bean.Album;
 import org.music.bean.Artist;
+import org.music.bean.PlayList;
 import org.music.bean.User;
 
 public class Analy {
@@ -28,7 +31,7 @@ public class Analy {
 	static ArrayDeque<File> queue = new ArrayDeque<File>();
 
 	public static void main(String[] args) throws IOException, JSONException {
-		File f = new File("E:\\download\\music.163.com\\artist-home");
+		File f = new File("E:\\download\\music.163.com\\playlist-home");
 		// String[] files = f.list();
 		// for(String file : files)
 		// System.out.println(file);
@@ -49,7 +52,9 @@ public class Analy {
 						if (fileArray[i].getName().endsWith(".html")) {
 
 							// parseUserHtml(fileArray[i]);
-							parseArtistHtml(fileArray[i]);
+							//parseArtistHtml(fileArray[i]);
+							//parseAlbumHtml(fileArray[i]);
+							parsePlaylistHtml(fileArray[i]);
 							break;
 						}
 
@@ -63,6 +68,26 @@ public class Analy {
 
 		}
 	}
+	
+	public static void parsePlaylistHtml(File file) throws IOException{
+		Document doc = Jsoup.parse(file, "UTF-8");
+		Element info = doc.getElementById("m-playlist");
+		PlayList playList = new PlayList();
+		playList.setName(info.select("div.tit").get(0).text());
+		playList.setPublishDate(info.select("span.time").get(0).text().split("&")[0]);
+		playList.setPic(info.select(".cover img").get(0).attr("src"));
+		Element operate = info.getElementById("content-operation");
+		playList.setFavNum(getNumbers(operate.select("a").get(2).text()));
+		playList.setShareNum(getNumbers(operate.select("a").get(3).text()));
+		playList.setCommentNum(getNumbers(operate.select("a").get(5).text()));
+		if(info.getElementById("album-desc-more")!=null){
+			playList.setDesc(info.getElementById("album-desc-more").text());
+		}
+		playList.setTrackNum(getNumbers(info.getElementById("playlist-track-count").text()));
+		playList.setPlayNum(getNumbers(info.getElementById("play-count").text()));
+		System.out.println(playList);
+	}
+	
 
 	public static void parseUserHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
@@ -120,13 +145,42 @@ public class Analy {
 		return (long) 0;
 	}
 
-	public void parseAritstHtml(File file) throws IOException {
 
-	}
 
-	public void parseSongHtml(File file) throws IOException {
+	public static void parseSongHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
+		Element songInfo = doc.select(".cnt").get(0);
+		org.music.bean.Track track = new org.music.bean.Track();
+		track.setName(songInfo.select(".f-ff2").get(0).text());
+		track.setAlbumId(getNumbers(songInfo.select(".des a").get(1).attr("href")));
+		track.setArtistId(getNumbers(songInfo.select(".des a").get(0).attr("href")));
+		System.out.println(track);
+		
+		
 	}
+	
+	public static void parseAlbumHtml(File file) throws IOException{
+		Document doc = Jsoup.parse(file, "UTF-8");
+		Elements intros = doc.select("p.intr");
+		Album album = new Album();
+		album.setName(doc.select(".tit").get(0).text());
+		album.setArtistId(getNumbers(intros.get(0).select("a").get(0).attr("href")));;
+		album.setPublishDate(intros.get(1).text().split("£º")[1]);
+		if(intros.size()>=3){
+			album.setCompany(intros.get(2).text().split("£º")[1]);
+		}
+		if(doc.getElementById("album-desc-more")!=null){
+			album.setDesc(doc.getElementById("album-desc-more").text());
+		}
+		album.setCommentNum(getNumbers(doc.getElementById("cnt_comment_count").text()));
+		album.setShareNum(getNumbers(doc.select(".u-btni-share i").text()));
+	    Elements sub = doc.select(".sub");
+	    album.setTrackNum(getNumbers(sub.get(0).text()));
+	    album.setPic(doc.select(".cover img").get(0).attr("src"));
+	    
+		System.out.println(album);
+	}
+	
 
 	public static void parseArtistHtml(File file) throws IOException, JSONException {
 		Document doc = Jsoup.parse(file, "UTF-8");

@@ -1,5 +1,6 @@
 package org.music.bean;
 
+import org.assertj.core.util.ToString;
 import org.json.JSONObject;
 
 public class Track {
@@ -16,6 +17,22 @@ public class Track {
 		private int fee;
 		private int ftype;
 		
+		public long getArtistId() {
+			return artistId;
+		}
+
+		public void setArtistId(long artistId) {
+			this.artistId = artistId;
+		}
+
+		public long getAlbumId() {
+			return albumId;
+		}
+
+		public void setAlbumId(long albumId) {
+			this.albumId = albumId;
+		}
+
 		@Override
 		public String toString() {
 		// TODO Auto-generated method stub
