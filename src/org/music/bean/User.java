@@ -26,6 +26,26 @@ public class User {
 		}
 		
 		
+		public int getProvince() {
+			return province;
+		}
+
+
+		public void setProvince(int province) {
+			this.province = province;
+		}
+
+
+		public int getCity() {
+			return city;
+		}
+
+
+		public void setCity(int city) {
+			this.city = city;
+		}
+
+
 		public String getAvatar() {
 			return avatar;
 		}

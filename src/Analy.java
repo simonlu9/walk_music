@@ -33,7 +33,7 @@ public class Analy {
 	static final long YEAR_MICO_SEC = (3600 * 24 * 365 * 1000);
 	static ArrayDeque<File> queue = new ArrayDeque<File>();
 	static UserDao userDao = new UserDao();
-	static Area area = new Area();
+	static Area areaObj = new Area();
 
 	public static void main(String[] args) throws IOException, JSONException, SQLException {
 		File f = new File("E:\\download\\music.163.com\\user-home");
@@ -124,6 +124,10 @@ public class Analy {
 			Elements area = age.parent().select("span");
 			if (area.size() > 0) {
 				user.setArea(area.select("span").get(0).text().split("£º")[1]); // ÇøÓò
+				String[] areaInfo = user.getArea().split("-");
+				System.out.println(areaInfo[1]);
+				user.setProvince(areaObj.direct.get(areaInfo[0].trim()));
+				user.setCity(areaObj.direct.get(areaInfo[1].trim()));
 			}
 		}
 

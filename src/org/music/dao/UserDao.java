@@ -17,8 +17,8 @@ public class UserDao {
 		users.add(_user);
 		if (users.size() > 5) {
 			Connection conn = MysqlPool.pool.getConnection();
-			String sql = "insert into user(username,weibo_id,gender,age,area,fans_num,follow_num,feed_num,record,avatar,level,uid,sign) "
-					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "insert into user(username,weibo_id,gender,age,area,fans_num,follow_num,feed_num,record,avatar,level,uid,sign,province,city) "
+					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			for (User user : users) {
 				ps.setString(1, user.getUsername());
@@ -34,6 +34,8 @@ public class UserDao {
 				ps.setInt(11, user.getLevel());
 				ps.setLong(12, user.getUid());
 				ps.setString(13, user.getSign());
+				ps.setInt(14, user.getProvince());
+				ps.setInt(15, user.getCity());
 				ps.addBatch();
 			}
 
