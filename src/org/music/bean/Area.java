@@ -45,6 +45,7 @@ public class Area {
 	
 	
 	public static void main(String[] args) throws JSONException {
+		System.out.println(direct.get("…œ∫£"));
 		/*
 		 * [{
         id: 1,

@@ -125,8 +125,9 @@ public class Analy {
 			if (area.size() > 0) {
 				user.setArea(area.select("span").get(0).text().split("£º")[1]); // ÇøÓò
 				String[] areaInfo = user.getArea().split("-");
-				System.out.println(areaInfo[1]);
+			
 				user.setProvince(areaObj.direct.get(areaInfo[0].trim()));
+				System.out.println(areaInfo[1].trim());
 				user.setCity(areaObj.direct.get(areaInfo[1].trim()));
 			}
 		}
