@@ -10,17 +10,19 @@ public class User {
 		private int gender;
 		private String username;
 		private long weibo_id;
-		private String area;
+		private String area="";
 		private String channel;
 		private String sign;
 		private String userCard;
 		private long record;
 		private String avatar;
+		private int province;
+		private int city;
 		@Override
 		public String toString() {
 		// TODO Auto-generated method stub
 		   return "uid:"+uid+"	username:"+username+"	level:"+level+"	 age:"+age+"	gender:"+gender+"	follow_num:"+follow_num+"	area:"+area
-				   +"	record:"+record+"	avatar:"+avatar;
+				   +"	record:"+record+"	avatar:"+avatar+"	weibo"+weibo_id+"	sign"+sign;
 		}
 		
 		

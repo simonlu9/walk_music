@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,16 +23,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.music.bean.Album;
+import org.music.bean.Area;
 import org.music.bean.Artist;
 import org.music.bean.PlayList;
 import org.music.bean.User;
+import org.music.dao.UserDao;
 
 public class Analy {
 	static final long YEAR_MICO_SEC = (3600 * 24 * 365 * 1000);
 	static ArrayDeque<File> queue = new ArrayDeque<File>();
+	static UserDao userDao = new UserDao();
+	static Area area = new Area();
 
-	public static void main(String[] args) throws IOException, JSONException {
-		File f = new File("E:\\download\\music.163.com\\playlist-home");
+	public static void main(String[] args) throws IOException, JSONException, SQLException {
+		File f = new File("E:\\download\\music.163.com\\user-home");
 		// String[] files = f.list();
 		// for(String file : files)
 		// System.out.println(file);
@@ -51,10 +56,10 @@ public class Analy {
 					} else {
 						if (fileArray[i].getName().endsWith(".html")) {
 
-							// parseUserHtml(fileArray[i]);
+							 parseUserHtml(fileArray[i]);
 							//parseArtistHtml(fileArray[i]);
 							//parseAlbumHtml(fileArray[i]);
-							parsePlaylistHtml(fileArray[i]);
+							//parsePlaylistHtml(fileArray[i]);
 							break;
 						}
 
@@ -89,22 +94,24 @@ public class Analy {
 	}
 	
 
-	public static void parseUserHtml(File file) throws IOException {
+	public static void parseUserHtml(File file) throws IOException, SQLException {
 		Document doc = Jsoup.parse(file, "UTF-8");
-		Element userInfo = doc.select("div.name").get(0);
+		Element userInfo = doc.select("div.g-bd").get(0);
 		User user = new User();
 		user.setUsername(userInfo.select("span.tit").get(0).text()); // 用户明
 		user.setLevel(Integer.parseInt(userInfo.select("span.lev").get(0).text()));// 级别
-
+		
 		user.setGender(userInfo.select(".u-icn-01").size() > 0 ? 1 : (userInfo.select(".u-icn-02").size() > 0 ? 2 : 0));// 性别
 		Element tabBox = doc.getElementById("tab-box");
 		user.setFeed_num(Integer.parseInt(tabBox.getElementById("event_count").text()));
 		user.setFollow_num(Integer.parseInt(tabBox.getElementById("follow_count").text()));
 		user.setFans_num(Integer.parseInt(tabBox.getElementById("fan_count").text()));
 
-		if (doc.hasClass("f-brk")) {
-			Element sign = doc.select(".f-brk").get(0);
-			user.setSign(sign.text());// 个性签名
+		if (userInfo.select(".f-brk").size()>0) {
+			Element sign = userInfo.select(".f-brk").get(0);
+			user.setSign(sign.text().split("：")[1]);// 个性签名
+		}else{
+			user.setSign("");
 		}
 
 		Element age = doc.getElementById("age");
@@ -129,8 +136,9 @@ public class Analy {
 		}
 		// 收藏的歌单
 		// 创建的歌单
-
 		System.out.println(user);
+		userDao.addUsers(user);
+	
 
 	}
 

@@ -28,5 +28,6 @@
 	<classpathentry kind="lib" path="F:/download/all-dependencies-0.5.2/xsoup-0.2.4.jar"/>
 	<classpathentry kind="lib" path="F:/download/jsoup-1.9.2.jar" sourcepath="F:/download/jsoup-1.9.2-sources.jar"/>
 	<classpathentry kind="lib" path="F:/download/json.jar"/>
+	<classpathentry kind="lib" path="F:/download/mysql-connector-java(jb51.net)/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
