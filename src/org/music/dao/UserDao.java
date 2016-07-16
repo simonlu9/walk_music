@@ -15,7 +15,7 @@ public class UserDao {
 
 	public void addUsers(User _user) throws SQLException {
 		users.add(_user);
-		if (users.size() > 5) {
+		if (users.size() > 10) {
 			Connection conn = MysqlPool.pool.getConnection();
 			String sql = "insert into user(username,weibo_id,gender,age,area,fans_num,follow_num,feed_num,record,avatar,level,uid,sign,province,city) "
 					+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";

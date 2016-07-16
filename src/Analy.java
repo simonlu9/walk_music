@@ -37,6 +37,7 @@ public class Analy {
 
 	public static void main(String[] args) throws IOException, JSONException, SQLException {
 		File f = new File("E:\\download\\music.163.com\\user-home");
+		
 		// String[] files = f.list();
 		// for(String file : files)
 		// System.out.println(file);
@@ -56,11 +57,16 @@ public class Analy {
 					} else {
 						if (fileArray[i].getName().endsWith(".html")) {
 
-							 parseUserHtml(fileArray[i]);
-							//parseArtistHtml(fileArray[i]);
-							//parseAlbumHtml(fileArray[i]);
-							//parsePlaylistHtml(fileArray[i]);
-							break;
+							parseUserHtml(fileArray[i]);
+							// parseArtistHtml(fileArray[i]);
+							// parseAlbumHtml(fileArray[i]);
+							// parsePlaylistHtml(fileArray[i]);
+							//break;
+							File newFile = new File(Output.getOutputFilePath("F:/output/user-home"), fileArray[i].getName());
+							if(!newFile.getParentFile().exists()){
+								newFile.getParentFile().mkdirs();
+							}
+						    fileArray[i].renameTo(newFile );
 						}
 
 					}
@@ -73,8 +79,8 @@ public class Analy {
 
 		}
 	}
-	
-	public static void parsePlaylistHtml(File file) throws IOException{
+
+	public static void parsePlaylistHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Element info = doc.getElementById("m-playlist");
 		PlayList playList = new PlayList();
@@ -85,32 +91,31 @@ public class Analy {
 		playList.setFavNum(getNumbers(operate.select("a").get(2).text()));
 		playList.setShareNum(getNumbers(operate.select("a").get(3).text()));
 		playList.setCommentNum(getNumbers(operate.select("a").get(5).text()));
-		if(info.getElementById("album-desc-more")!=null){
+		if (info.getElementById("album-desc-more") != null) {
 			playList.setDesc(info.getElementById("album-desc-more").text());
 		}
 		playList.setTrackNum(getNumbers(info.getElementById("playlist-track-count").text()));
 		playList.setPlayNum(getNumbers(info.getElementById("play-count").text()));
 		System.out.println(playList);
 	}
-	
 
-	public static void parseUserHtml(File file) throws IOException, SQLException {
+	public static void parseUserHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Element userInfo = doc.select("div.g-bd").get(0);
 		User user = new User();
 		user.setUsername(userInfo.select("span.tit").get(0).text()); // 用户明
 		user.setLevel(Integer.parseInt(userInfo.select("span.lev").get(0).text()));// 级别
-		
+
 		user.setGender(userInfo.select(".u-icn-01").size() > 0 ? 1 : (userInfo.select(".u-icn-02").size() > 0 ? 2 : 0));// 性别
 		Element tabBox = doc.getElementById("tab-box");
 		user.setFeed_num(Integer.parseInt(tabBox.getElementById("event_count").text()));
 		user.setFollow_num(Integer.parseInt(tabBox.getElementById("follow_count").text()));
 		user.setFans_num(Integer.parseInt(tabBox.getElementById("fan_count").text()));
 
-		if (userInfo.select(".f-brk").size()>0) {
+		if (userInfo.select(".f-brk").size() > 0) {
 			Element sign = userInfo.select(".f-brk").get(0);
 			user.setSign(sign.text().split("：")[1]);// 个性签名
-		}else{
+		} else {
 			user.setSign("");
 		}
 
@@ -125,11 +130,30 @@ public class Analy {
 			if (area.size() > 0) {
 				user.setArea(area.select("span").get(0).text().split("：")[1]); // 区域
 				String[] areaInfo = user.getArea().split("-");
+				areaInfo[0] = areaInfo[0].trim();
+				areaInfo[1] = areaInfo[1].trim();
+				if (areaObj.direct.get(areaInfo[1]) == null) {
+					if (areaInfo[1] .equals( "万州区") ){
+						user.setProvince(areaObj.direct.get("直辖市"));
+						user.setCity(areaObj.direct.get("重庆市"));
+					} else if (areaInfo[1]  .equals( "和平区")) {
+						user.setProvince(areaObj.direct.get("直辖市"));
+						user.setCity(areaObj.direct.get("天津市"));
+					} else if (areaInfo[1]  .equals( "黄埔区")) {
+						user.setProvince(areaObj.direct.get("直辖市"));
+						user.setCity(areaObj.direct.get("上海市"));
+					} else if (areaInfo[1]  .equals( "东城区") ){
+						user.setProvince(areaObj.direct.get("直辖市"));
+						user.setCity(areaObj.direct.get("北京市"));
+					}
+				}else{
+					user.setProvince(areaObj.direct.get(areaInfo[0]));
+				    user.setCity(areaObj.direct.get(areaInfo[1]));
+				}
+
 			
-				user.setProvince(areaObj.direct.get(areaInfo[0].trim()));
-				System.out.println(areaInfo[1].trim());
-				user.setCity(areaObj.direct.get(areaInfo[1].trim()));
 			}
+		
 		}
 
 		user.setRecord(getNumbers((doc.getElementById("rHeader").select("h4").get(0).text())));// 听过记录
@@ -142,8 +166,15 @@ public class Analy {
 		// 收藏的歌单
 		// 创建的歌单
 		System.out.println(user);
-		userDao.addUsers(user);
-	
+		try {
+			userDao.addUsers(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println(file.getName());
+			e.printStackTrace();
+		}
+		//移动文件
+		
 
 	}
 
@@ -158,8 +189,6 @@ public class Analy {
 		return (long) 0;
 	}
 
-
-
 	public static void parseSongHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Element songInfo = doc.select(".cnt").get(0);
@@ -168,32 +197,31 @@ public class Analy {
 		track.setAlbumId(getNumbers(songInfo.select(".des a").get(1).attr("href")));
 		track.setArtistId(getNumbers(songInfo.select(".des a").get(0).attr("href")));
 		System.out.println(track);
-		
-		
+
 	}
-	
-	public static void parseAlbumHtml(File file) throws IOException{
+
+	public static void parseAlbumHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Elements intros = doc.select("p.intr");
 		Album album = new Album();
 		album.setName(doc.select(".tit").get(0).text());
-		album.setArtistId(getNumbers(intros.get(0).select("a").get(0).attr("href")));;
+		album.setArtistId(getNumbers(intros.get(0).select("a").get(0).attr("href")));
+		;
 		album.setPublishDate(intros.get(1).text().split("：")[1]);
-		if(intros.size()>=3){
+		if (intros.size() >= 3) {
 			album.setCompany(intros.get(2).text().split("：")[1]);
 		}
-		if(doc.getElementById("album-desc-more")!=null){
+		if (doc.getElementById("album-desc-more") != null) {
 			album.setDesc(doc.getElementById("album-desc-more").text());
 		}
 		album.setCommentNum(getNumbers(doc.getElementById("cnt_comment_count").text()));
 		album.setShareNum(getNumbers(doc.select(".u-btni-share i").text()));
-	    Elements sub = doc.select(".sub");
-	    album.setTrackNum(getNumbers(sub.get(0).text()));
-	    album.setPic(doc.select(".cover img").get(0).attr("src"));
-	    
+		Elements sub = doc.select(".sub");
+		album.setTrackNum(getNumbers(sub.get(0).text()));
+		album.setPic(doc.select(".cover img").get(0).attr("src"));
+
 		System.out.println(album);
 	}
-	
 
 	public static void parseArtistHtml(File file) throws IOException, JSONException {
 		Document doc = Jsoup.parse(file, "UTF-8");
@@ -218,7 +246,6 @@ public class Analy {
 				track.setScore(songInfo.getInt("score"));
 				track.setId(songInfo.getLong("id"));
 				track.setName(songInfo.getString("name"));
-				
 
 				System.out.println(track);
 
