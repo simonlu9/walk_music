@@ -37,7 +37,7 @@ public class Analy {
 
 	public static void main(String[] args) throws IOException, JSONException, SQLException {
 		File f = new File("E:\\download\\music.163.com\\user-home");
-		
+
 		// String[] files = f.list();
 		// for(String file : files)
 		// System.out.println(file);
@@ -61,12 +61,13 @@ public class Analy {
 							// parseArtistHtml(fileArray[i]);
 							// parseAlbumHtml(fileArray[i]);
 							// parsePlaylistHtml(fileArray[i]);
-							//break;
-							File newFile = new File(Output.getOutputFilePath("F:/output/user-home"), fileArray[i].getName());
-							if(!newFile.getParentFile().exists()){
+							// break;
+							File newFile = new File(Output.getOutputFilePath("F:/output/user-home"),
+									fileArray[i].getName());
+							if (!newFile.getParentFile().exists()) {
 								newFile.getParentFile().mkdirs();
 							}
-						    fileArray[i].renameTo(newFile );
+							fileArray[i].renameTo(newFile);
 						}
 
 					}
@@ -101,8 +102,14 @@ public class Analy {
 
 	public static void parseUserHtml(File file) throws IOException {
 		Document doc = Jsoup.parse(file, "UTF-8");
+		if (doc.select("div.g-bd").size() == 0) {
+			return;
+		}
 		Element userInfo = doc.select("div.g-bd").get(0);
 		User user = new User();
+		if(userInfo.select("span.tit").size()==0){
+			return;
+		}
 		user.setUsername(userInfo.select("span.tit").get(0).text()); // 用户明
 		user.setLevel(Integer.parseInt(userInfo.select("span.lev").get(0).text()));// 级别
 
@@ -114,7 +121,13 @@ public class Analy {
 
 		if (userInfo.select(".f-brk").size() > 0) {
 			Element sign = userInfo.select(".f-brk").get(0);
-			user.setSign(sign.text().split("：")[1]);// 个性签名
+			String[] signArr = sign.text().split("：");
+			if (signArr.length < 2) {
+				user.setSign(signArr[0]);
+			} else {
+				user.setSign(signArr[1]);
+			}
+			// user.setSign(sign.text().split("：")[1]);// 个性签名
 		} else {
 			user.setSign("");
 		}
@@ -130,30 +143,34 @@ public class Analy {
 			if (area.size() > 0) {
 				user.setArea(area.select("span").get(0).text().split("：")[1]); // 区域
 				String[] areaInfo = user.getArea().split("-");
-				areaInfo[0] = areaInfo[0].trim();
-				areaInfo[1] = areaInfo[1].trim();
-				if (areaObj.direct.get(areaInfo[1]) == null) {
-					if (areaInfo[1] .equals( "万州区") ){
-						user.setProvince(areaObj.direct.get("直辖市"));
-						user.setCity(areaObj.direct.get("重庆市"));
-					} else if (areaInfo[1]  .equals( "和平区")) {
-						user.setProvince(areaObj.direct.get("直辖市"));
-						user.setCity(areaObj.direct.get("天津市"));
-					} else if (areaInfo[1]  .equals( "黄埔区")) {
-						user.setProvince(areaObj.direct.get("直辖市"));
-						user.setCity(areaObj.direct.get("上海市"));
-					} else if (areaInfo[1]  .equals( "东城区") ){
-						user.setProvince(areaObj.direct.get("直辖市"));
-						user.setCity(areaObj.direct.get("北京市"));
+				if (areaInfo.length < 2) {
+					user.setProvince(0);
+					user.setCity(0);
+				} else {
+					areaInfo[0] = areaInfo[0].trim();
+					areaInfo[1] = areaInfo[1].trim();
+					if (areaObj.direct.get(areaInfo[1]) == null) {
+						if (areaInfo[1].equals("万州区")) {
+							user.setProvince(areaObj.direct.get("直辖市"));
+							user.setCity(areaObj.direct.get("重庆市"));
+						} else if (areaInfo[1].equals("和平区")) {
+							user.setProvince(areaObj.direct.get("直辖市"));
+							user.setCity(areaObj.direct.get("天津市"));
+						} else if (areaInfo[1].equals("黄埔区")) {
+							user.setProvince(areaObj.direct.get("直辖市"));
+							user.setCity(areaObj.direct.get("上海市"));
+						} else if (areaInfo[1].equals("东城区")) {
+							user.setProvince(areaObj.direct.get("直辖市"));
+							user.setCity(areaObj.direct.get("北京市"));
+						}
+					} else {
+						user.setProvince(areaObj.direct.get(areaInfo[0]));
+						user.setCity(areaObj.direct.get(areaInfo[1]));
 					}
-				}else{
-					user.setProvince(areaObj.direct.get(areaInfo[0]));
-				    user.setCity(areaObj.direct.get(areaInfo[1]));
 				}
 
-			
 			}
-		
+
 		}
 
 		user.setRecord(getNumbers((doc.getElementById("rHeader").select("h4").get(0).text())));// 听过记录
@@ -166,15 +183,10 @@ public class Analy {
 		// 收藏的歌单
 		// 创建的歌单
 		System.out.println(user);
-		try {
-			userDao.addUsers(user);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println(file.getName());
-			e.printStackTrace();
-		}
-		//移动文件
-		
+
+		userDao.addUsers(user);
+
+		// 移动文件
 
 	}
 
