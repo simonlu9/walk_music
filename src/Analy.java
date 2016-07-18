@@ -3,6 +3,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.security.PrivilegedActionException;
 import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -27,58 +30,37 @@ import org.music.bean.Area;
 import org.music.bean.Artist;
 import org.music.bean.PlayList;
 import org.music.bean.User;
+import org.music.dao.ArtistDao;
+import org.music.dao.PlayListDao;
+import org.music.dao.TrackDao;
 import org.music.dao.UserDao;
 
 public class Analy {
 	static final long YEAR_MICO_SEC = (3600 * 24 * 365 * 1000);
-	static ArrayDeque<File> queue = new ArrayDeque<File>();
+	//static ArrayDeque<File> queue = new ArrayDeque<File>();
 	static UserDao userDao = new UserDao();
+	static TrackDao trackDao = new TrackDao();
+	static ArtistDao artistDao = new ArtistDao();
+	static PlayListDao playlistDao = new PlayListDao();
 	static Area areaObj = new Area();
 
-	public static void main(String[] args) throws IOException, JSONException, SQLException {
-		File f = new File("E:\\download\\music.163.com\\user-home");
-
-		// String[] files = f.list();
-		// for(String file : files)
-		// System.out.println(file);
-		queue.add(f);
-		File[] fileArray;
-		// FileUtils.listFiles(arg0, arg1, arg2)
-		while (!queue.isEmpty()) {
-			File currentFile = queue.pop();
-			if (currentFile.isDirectory()) {
-				fileArray = currentFile.listFiles();
-
-				for (int i = 0; i < fileArray.length; i++) {
-					// 递归调用
-					if (fileArray[i].isDirectory()) {
-						// System.out.println(fileArray[i].getName());
-						queue.add(fileArray[i]);
-					} else {
-						if (fileArray[i].getName().endsWith(".html")) {
-
-							parseUserHtml(fileArray[i]);
-							// parseArtistHtml(fileArray[i]);
-							// parseAlbumHtml(fileArray[i]);
-							// parsePlaylistHtml(fileArray[i]);
-							// break;
-							File newFile = new File(Output.getOutputFilePath("F:/output/user-home"),
-									fileArray[i].getName());
-							if (!newFile.getParentFile().exists()) {
-								newFile.getParentFile().mkdirs();
-							}
-							fileArray[i].renameTo(newFile);
-						}
-
-					}
-
-				}
-
-			} else {
-
-			}
-
-		}
+	public static void main(String[] args) throws IOException, JSONException, SQLException, NoSuchMethodException, SecurityException, ClassNotFoundException {
+		Class<?> threadClazz = Class.forName("Analy");  
+		Thread threads[]=new Thread[6];
+		   //  threads[0] = new HandleThread("E:\\download\\music.163.com\\user-home", "F:\\output\\user-home", threadClazz.getMethod("parseUserHtml",File.class));
+		  //   threads[1] = new HandleThread("E:\\download\\music.163.com\\song-home", "F:\\output\\song-home", threadClazz.getMethod("parseSongHtml",File.class));
+		  //   threads[2] = new HandleThread("E:\\download\\music.163.com\\artist-home", "F:\\output\\artist-home", threadClazz.getMethod("parseArtistHtml",File.class));
+		     threads[3] = new HandleThread("E:\\download\\music.163.com\\playlist-home", "F:\\output\\playlist-home", threadClazz.getMethod("parsePlaylistHtml",File.class));
+		   //  threads[4] = new HandleThread("E:\\download\\music.163.com\\album-home", "F:\\output\\album-home", threadClazz.getMethod("parseSongHtml",File.class));
+		    // threads[5] = new HandleThread("E:\\download\\music.163.com\\song-home", "F:\\output\\song-home", threadClazz.getMethod("parseSongHtml",File.class));
+				
+		     threads[3].start();
+		     //thread.start();
+		
+	}
+	
+	public static void test(File file) {
+		System.out.println(file);
 	}
 
 	public static void parsePlaylistHtml(File file) throws IOException {
@@ -92,12 +74,16 @@ public class Analy {
 		playList.setFavNum(getNumbers(operate.select("a").get(2).text()));
 		playList.setShareNum(getNumbers(operate.select("a").get(3).text()));
 		playList.setCommentNum(getNumbers(operate.select("a").get(5).text()));
+		playList.setId(getNumbers(doc.getElementById("content-operation").attr("data-rid")));
+		playList.setUid(getNumbers(doc.select(".user .name a").get(0).attr("href")));
 		if (info.getElementById("album-desc-more") != null) {
 			playList.setDesc(info.getElementById("album-desc-more").text());
 		}
 		playList.setTrackNum(getNumbers(info.getElementById("playlist-track-count").text()));
 		playList.setPlayNum(getNumbers(info.getElementById("play-count").text()));
+		
 		System.out.println(playList);
+		playlistDao.addPlayList(playList);
 	}
 
 	public static void parseUserHtml(File file) throws IOException {
@@ -206,9 +192,21 @@ public class Analy {
 		Element songInfo = doc.select(".cnt").get(0);
 		org.music.bean.Track track = new org.music.bean.Track();
 		track.setName(songInfo.select(".f-ff2").get(0).text());
-		track.setAlbumId(getNumbers(songInfo.select(".des a").get(1).attr("href")));
-		track.setArtistId(getNumbers(songInfo.select(".des a").get(0).attr("href")));
+		Elements media = songInfo.select(".des a");
+		if(media.size()==0){
+			track.setArtistId(0);
+			track.setAlbumId(0);
+		}else if (media.size()==1) {
+			track.setArtistId(getNumbers(media.get(0).attr("href")));
+			track.setAlbumId(0);
+		}else if(media.size()==2){
+			track.setAlbumId(getNumbers(media.get(1).attr("href")));
+			track.setArtistId(getNumbers(media.get(0).attr("href")));
+		}
+		track.setId(getNumbers(doc.getElementById("content-operation").attr("data-rid")));
+	
 		System.out.println(track);
+		trackDao.addTrack(track);
 
 	}
 
@@ -240,12 +238,24 @@ public class Analy {
 		// System.out.println(file.getPath());
 		Elements metas = doc.select("meta");
 		Artist artist = new Artist();
-		artist.setName(metas.get(2).attr("content"));
-		artist.setAvatar(metas.get(6).attr("content"));
+		if(metas.size()>=3){
+			artist.setName(metas.get(2).attr("content"));
+		}
+	
+		if(metas.size()>=7){
+			artist.setAvatar(metas.get(6).attr("content"));
+		}
+		if(metas.size()>=8){
 		artist.setId(getNumbers(metas.get(7).attr("content")));
-
-		artist.setDesc(metas.get(8).attr("content"));
+		}
+		if(metas.size()>=9){
+			artist.setDesc(metas.get(8).attr("content"));
+		}
+		
 		System.out.println(artist);
+		artistDao.addArtist(artist);
+		
+		
 		if (doc.getElementById("song-list-pre-cache") != null) {
 			String content = doc.getElementById("song-list-pre-cache").select("textarea").get(0).text();
 			JSONArray jsonArr = new JSONArray(content);
@@ -259,7 +269,7 @@ public class Analy {
 				track.setId(songInfo.getLong("id"));
 				track.setName(songInfo.getString("name"));
 
-				System.out.println(track);
+				//System.out.println(track);
 
 				// System.out.println(
 				// jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
@@ -272,3 +282,80 @@ public class Analy {
 
 	}
 }
+
+class HandleThread extends Thread{
+	static ArrayDeque<File> queue = new ArrayDeque<File>();
+	private String inputDir = "";
+	private String outputDir="";
+	private Method method ;
+	public HandleThread(String inputDir,String outputDir,Method method) {
+		// TODO Auto-generated constructor stub
+		this.outputDir = outputDir;
+		this.inputDir = inputDir;
+		this.method = method;
+	}
+	
+	@Override
+	public void run() {
+		File f = new File(inputDir);
+
+		// String[] files = f.list();
+		// for(String file : files)
+		// System.out.println(file);
+		queue.add(f);
+		File[] fileArray;
+		// FileUtils.listFiles(arg0, arg1, arg2)
+		while (!queue.isEmpty()) {
+			File currentFile = queue.pop();
+			if (currentFile.isDirectory()) {
+				fileArray = currentFile.listFiles();
+
+				for (int i = 0; i < fileArray.length; i++) {
+					// 递归调用
+					if (fileArray[i].isDirectory()) {
+						// System.out.println(fileArray[i].getName());
+						queue.add(fileArray[i]);
+					} else {
+						if (fileArray[i].getName().endsWith(".html")) {
+							
+							try {
+								method.invoke(null,fileArray[i] );
+							} catch (IllegalAccessException e) {
+				
+							} catch (IllegalArgumentException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InvocationTargetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+							//parseUserHtml(fileArray[i]);
+							// parseArtistHtml(fileArray[i]);
+							// parseAlbumHtml(fileArray[i]);
+							// parsePlaylistHtml(fileArray[i]);
+							// break;
+//							File newFile = new File(Output.getOutputFilePath(outputDir),
+//									fileArray[i].getName());
+//							if (!newFile.getParentFile().exists()) {
+//								newFile.getParentFile().mkdirs();
+//							}
+//							fileArray[i].renameTo(newFile);
+						}
+
+					}
+
+				}
+
+			} else {
+
+			}
+
+		}
+		
+	}
+	
+	
+	
+}
+

@@ -13,7 +13,7 @@ public class Track {
 		private int status;
 		private String transNames;
 		private String name; //¸èÇúÃû×Ö
-		private int mvid; //mvid
+		private int mvid=0; //mvid
 		private int fee;
 		private int ftype;
 		

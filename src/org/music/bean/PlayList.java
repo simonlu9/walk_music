@@ -3,10 +3,10 @@ package org.music.bean;
 import java.util.Set;
 
 public class PlayList {
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -84,7 +84,7 @@ public class PlayList {
 		this.playNum = playNum;
 	}
 
-	private int id;
+	private long id;
 	private String name;
 	private String pic;
 	private String publishDate;//发行时间
