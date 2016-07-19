@@ -5,14 +5,49 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.sound.midi.Track;
 
 import org.apache.log4j.Logger;
 import org.music.bean.PlayList;
 import org.music.pool.MysqlPool;
 
 public class PlayListDao {
-	static Logger logger =  Logger.getLogger("playlist");
-	//tag未统计
+	static Logger logger = Logger.getLogger("playlist");
+
+	public void addPlayListTrack(PlayList playlist, Set<Long> trackIds) {
+		Connection conn = MysqlPool.pool.getConnection();
+		String sql = "insert into playlist_track(playlist_id,track_id) " + "values(?,?)";
+		PreparedStatement ps;
+		Iterator<Long> it = trackIds.iterator();
+
+		try {
+			ps = conn.prepareStatement(sql);
+			while (it.hasNext()) {
+				ps.setLong(1, playlist.getId());
+				ps.setLong(2, it.next());
+				ps.addBatch();
+			}
+			ps.executeBatch();
+			ps.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			MysqlPool.pool.returnConnection(conn);
+			// ps.executeUpdate();无法判断是否已经插入
+			// users.clear();
+			System.out.println("插入失败 from:" + playlist);
+			StringWriter sw = new StringWriter();
+			e.printStackTrace(new PrintWriter(sw));
+			logger.error(sw.toString());
+		}finally {
+			MysqlPool.pool.returnConnection(conn);
+		}
+
+	}
+
+	// tag未统计
 	public void addPlayList(PlayList playlist) {
 		Connection conn = MysqlPool.pool.getConnection();
 		String sql = "insert into playlist(id,uid,name,pic,publish_date,comment_num,share_num,fav_num,track_num,play_num,`desc`) "
@@ -34,17 +69,17 @@ public class PlayListDao {
 			ps.addBatch();
 			ps.executeBatch();
 			ps.close();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			MysqlPool.pool.returnConnection(conn);
 			// ps.executeUpdate();无法判断是否已经插入
 			// users.clear();
-			System.out.println("插入失败 from:" +playlist);
-		     StringWriter sw = new StringWriter();
+			System.out.println("插入失败 from:" + playlist);
+			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw));
 			logger.error(sw.toString());
-		}finally {
+		} finally {
 			MysqlPool.pool.returnConnection(conn);
 			// MysqlPool.pool.returnConnection(conn);
 		}

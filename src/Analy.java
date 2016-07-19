@@ -11,6 +11,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,7 @@ import org.music.bean.Area;
 import org.music.bean.Artist;
 import org.music.bean.PlayList;
 import org.music.bean.User;
+import org.music.dao.AlbumDao;
 import org.music.dao.ArtistDao;
 import org.music.dao.PlayListDao;
 import org.music.dao.TrackDao;
@@ -42,19 +45,21 @@ public class Analy {
 	static TrackDao trackDao = new TrackDao();
 	static ArtistDao artistDao = new ArtistDao();
 	static PlayListDao playlistDao = new PlayListDao();
+	static AlbumDao albumDao = new AlbumDao();
 	static Area areaObj = new Area();
 
 	public static void main(String[] args) throws IOException, JSONException, SQLException, NoSuchMethodException, SecurityException, ClassNotFoundException {
 		Class<?> threadClazz = Class.forName("Analy");  
 		Thread threads[]=new Thread[6];
-		   //  threads[0] = new HandleThread("E:\\download\\music.163.com\\user-home", "F:\\output\\user-home", threadClazz.getMethod("parseUserHtml",File.class));
-		  //   threads[1] = new HandleThread("E:\\download\\music.163.com\\song-home", "F:\\output\\song-home", threadClazz.getMethod("parseSongHtml",File.class));
-		  //   threads[2] = new HandleThread("E:\\download\\music.163.com\\artist-home", "F:\\output\\artist-home", threadClazz.getMethod("parseArtistHtml",File.class));
-		     threads[3] = new HandleThread("E:\\download\\music.163.com\\playlist-home", "F:\\output\\playlist-home", threadClazz.getMethod("parsePlaylistHtml",File.class));
-		   //  threads[4] = new HandleThread("E:\\download\\music.163.com\\album-home", "F:\\output\\album-home", threadClazz.getMethod("parseSongHtml",File.class));
-		    // threads[5] = new HandleThread("E:\\download\\music.163.com\\song-home", "F:\\output\\song-home", threadClazz.getMethod("parseSongHtml",File.class));
-				
-		     threads[3].start();
+		    threads[0] = new HandleThread("E:\\download\\music.163.com\\user-home", "F:\\output\\user-home", threadClazz.getMethod("parseUserHtml",File.class));
+		    threads[1] = new HandleThread("E:\\download\\music.163.com\\song-home", "F:\\output\\song-home", threadClazz.getMethod("parseSongHtml",File.class));
+		     threads[2] = new HandleThread("E:\\download\\music.163.com\\artist-home", "F:\\output\\artist-home", threadClazz.getMethod("parseArtistHtml",File.class));
+		    threads[3] = new HandleThread("E:\\download\\music.163.com\\playlist-home", "F:\\output\\playlist-home", threadClazz.getMethod("parsePlaylistHtml",File.class));
+		    threads[4] = new HandleThread("E:\\download\\music.163.com\\album-home", "F:\\output\\album-home", threadClazz.getMethod("parseAlbumHtml",File.class));
+		 		
+		   //  threads[4].start();
+		    for (int i = 0; i <5; i++)
+	            threads[i].start();
 		     //thread.start();
 		
 	}
@@ -63,10 +68,13 @@ public class Analy {
 		System.out.println(file);
 	}
 
-	public static void parsePlaylistHtml(File file) throws IOException {
+	public static void parsePlaylistHtml(File file) throws IOException, JSONException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Element info = doc.getElementById("m-playlist");
 		PlayList playList = new PlayList();
+		if(info.select("div.tit").size()==0){
+			return;
+		}
 		playList.setName(info.select("div.tit").get(0).text());
 		playList.setPublishDate(info.select("span.time").get(0).text().split("&")[0]);
 		playList.setPic(info.select(".cover img").get(0).attr("src"));
@@ -75,7 +83,7 @@ public class Analy {
 		playList.setShareNum(getNumbers(operate.select("a").get(3).text()));
 		playList.setCommentNum(getNumbers(operate.select("a").get(5).text()));
 		playList.setId(getNumbers(doc.getElementById("content-operation").attr("data-rid")));
-		playList.setUid(getNumbers(doc.select(".user .name a").get(0).attr("href")));
+		playList.setUid(getNumbers(doc.select(".user .name a").get(0).attr("href").split("\\?")[1]));
 		if (info.getElementById("album-desc-more") != null) {
 			playList.setDesc(info.getElementById("album-desc-more").text());
 		}
@@ -84,6 +92,36 @@ public class Analy {
 		
 		System.out.println(playList);
 		playlistDao.addPlayList(playList);
+		
+		Set<Long> trackIds = new HashSet<Long>();
+		if (doc.getElementById("song-list-pre-cache") != null) {
+			String content = doc.getElementById("song-list-pre-cache").select("textarea").get(0).text();
+			JSONArray jsonArr = new JSONArray(content);
+
+			for (int i = 0; i < jsonArr.length(); i++) {
+				JSONObject songInfo = jsonArr.getJSONObject(i);
+				org.music.bean.Track track = new org.music.bean.Track();
+				// track.setDuration(duration);
+				track.setDuration(songInfo.getInt("duration"));
+				track.setScore(songInfo.getInt("score"));
+				track.setId(songInfo.getLong("id"));
+				track.setName(songInfo.getString("name"));
+				track.setAlbumId(songInfo.getJSONObject("album").getLong("id"));
+				track.setArtistId(songInfo.getJSONArray("artists").getJSONObject(0).getLong("id"));
+				trackDao.replaceTrack(track);
+				trackIds.add(track.getId());
+
+				//System.out.println(track);
+
+				// System.out.println(
+				// jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
+
+			}
+			playlistDao.addPlayListTrack(playList, trackIds);
+		
+		}
+		
+		
 	}
 
 	public static void parseUserHtml(File file) throws IOException {
@@ -207,17 +245,32 @@ public class Analy {
 	
 		System.out.println(track);
 		trackDao.addTrack(track);
+		
+		
+		
+		
 
 	}
 
-	public static void parseAlbumHtml(File file) throws IOException {
+	public static void parseAlbumHtml(File file) throws IOException, JSONException {
 		Document doc = Jsoup.parse(file, "UTF-8");
 		Elements intros = doc.select("p.intr");
 		Album album = new Album();
 		album.setName(doc.select(".tit").get(0).text());
-		album.setArtistId(getNumbers(intros.get(0).select("a").get(0).attr("href")));
-		;
-		album.setPublishDate(intros.get(1).text().split("£º")[1]);
+		
+		if(intros.size()==0){
+			return;
+		}
+		if(intros.size()>=1){
+			album.setArtistId(getNumbers(intros.get(0).select("a").get(0).attr("href").split("\\?")[1]));
+		}else{
+			album.setArtistId(0);
+		}
+		
+		if(intros.size()>=2){
+			album.setPublishDate(intros.get(1).text().split("£º")[1]);
+		}
+		
 		if (intros.size() >= 3) {
 			album.setCompany(intros.get(2).text().split("£º")[1]);
 		}
@@ -229,8 +282,39 @@ public class Analy {
 		Elements sub = doc.select(".sub");
 		album.setTrackNum(getNumbers(sub.get(0).text()));
 		album.setPic(doc.select(".cover img").get(0).attr("src"));
+		album.setId(getNumbers(doc.getElementById("content-operation").attr("data-rid")));
 
 		System.out.println(album);
+		albumDao.addAlbum(album);
+		Set<Long> trackIds = new HashSet<Long>();
+		if (doc.getElementById("song-list-pre-cache") != null) {
+			String content = doc.getElementById("song-list-pre-cache").select("textarea").get(0).text();
+			JSONArray jsonArr = new JSONArray(content);
+
+			for (int i = 0; i < jsonArr.length(); i++) {
+				JSONObject songInfo = jsonArr.getJSONObject(i);
+				org.music.bean.Track track = new org.music.bean.Track();
+				// track.setDuration(duration);
+				track.setDuration(songInfo.getInt("duration"));
+				track.setScore(songInfo.getInt("score"));
+				track.setId(songInfo.getLong("id"));
+				track.setName(songInfo.getString("name"));
+				track.setAlbumId(songInfo.getJSONObject("album").getLong("id"));
+				track.setArtistId(songInfo.getJSONArray("artists").getJSONObject(0).getLong("id"));
+				trackDao.replaceTrack(track);
+				trackIds.add(track.getId());
+
+				//System.out.println(track);
+
+				// System.out.println(
+				// jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
+
+			}
+			albumDao.addAlbumTrack(album, trackIds);
+		
+		}
+		
+		
 	}
 
 	public static void parseArtistHtml(File file) throws IOException, JSONException {
@@ -255,7 +339,7 @@ public class Analy {
 		System.out.println(artist);
 		artistDao.addArtist(artist);
 		
-		
+	
 		if (doc.getElementById("song-list-pre-cache") != null) {
 			String content = doc.getElementById("song-list-pre-cache").select("textarea").get(0).text();
 			JSONArray jsonArr = new JSONArray(content);
@@ -268,6 +352,10 @@ public class Analy {
 				track.setScore(songInfo.getInt("score"));
 				track.setId(songInfo.getLong("id"));
 				track.setName(songInfo.getString("name"));
+				track.setAlbumId(songInfo.getJSONObject("album").getLong("id"));
+				track.setArtistId(songInfo.getJSONArray("artists").getJSONObject(0).getLong("id"));
+				trackDao.replaceTrack(track);
+				
 
 				//System.out.println(track);
 
@@ -275,6 +363,7 @@ public class Analy {
 				// jsonArr.getJSONObject(i).getJSONArray("artists").getJSONObject(0).getString("name"));
 
 			}
+		
 
 		} else {
 
@@ -284,7 +373,7 @@ public class Analy {
 }
 
 class HandleThread extends Thread{
-	static ArrayDeque<File> queue = new ArrayDeque<File>();
+	private ArrayDeque<File> queue = new ArrayDeque<File>();
 	private String inputDir = "";
 	private String outputDir="";
 	private Method method ;
@@ -335,12 +424,12 @@ class HandleThread extends Thread{
 							// parseAlbumHtml(fileArray[i]);
 							// parsePlaylistHtml(fileArray[i]);
 							// break;
-//							File newFile = new File(Output.getOutputFilePath(outputDir),
-//									fileArray[i].getName());
-//							if (!newFile.getParentFile().exists()) {
-//								newFile.getParentFile().mkdirs();
-//							}
-//							fileArray[i].renameTo(newFile);
+							File newFile = new File(Output.getOutputFilePath(outputDir),
+									fileArray[i].getName());
+							if (!newFile.getParentFile().exists()) {
+								newFile.getParentFile().mkdirs();
+							}
+							fileArray[i].renameTo(newFile);
 						}
 
 					}

@@ -25,7 +25,7 @@ public class UserDao {
 		// users.add(_user);
 		// if (users.size() > 10) {
 		Connection conn = MysqlPool.pool.getConnection();
-		String sql = "insert into user(username,weibo_id,gender,age,area,fans_num,follow_num,feed_num,record,avatar,level,uid,sign,province,city) "
+		String sql = "replace into user(username,weibo_id,gender,age,area,fans_num,follow_num,feed_num,record,avatar,level,uid,sign,province,city) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps;
 		try {

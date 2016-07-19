@@ -15,7 +15,7 @@ public class ArtistDao {
 
 		public void addArtist(Artist artist) {
 			Connection conn = MysqlPool.pool.getConnection();
-			String sql = "insert into artist(id,name,avatar,`desc`) "
+			String sql = "replace into artist(id,name,avatar,`desc`) "
 					+ "values(?,?,?,?)";
 			PreparedStatement ps;
 			try {

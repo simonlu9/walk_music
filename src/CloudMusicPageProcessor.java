@@ -227,7 +227,7 @@ public class CloudMusicPageProcessor implements PageProcessor {
 			this.processArtistAlbum(page);
 
 		} else if (page.getUrl().regex(URL_ARTIST_DESC).match()) {
-			System.out.println("album");
+			this.processArtistDesc(page);
 		} else if (page.getUrl().regex(URL_LIST_TAG).match()) {
 			this.processTag(page);
 			//System.out.println("tag");

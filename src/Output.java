@@ -30,7 +30,7 @@ public class Output {
 					int minute = cal.get(Calendar.MINUTE);
 					int second = cal.get(Calendar.SECOND);
 					String path =root+PATH_SEPERATOR+month+PATH_SEPERATOR+ date+PATH_SEPERATOR+hour+PATH_SEPERATOR+minute+PATH_SEPERATOR+second+PATH_SEPERATOR;
-					System.out.println(path);
+				//	System.out.println(path);
 					return path;
 					
 				}
