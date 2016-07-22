@@ -8,7 +8,7 @@ public class Output {
 			  
 				private static final String PATH_SEPERATOR = "/";
 				public static void main(String[] args) throws InterruptedException {
-					String ss = DigestUtils.md5Hex("http://music.163.com/user/home?id=77457369");
+					String ss = DigestUtils.md5Hex("123456");
 					System.out.println(ss);
 					
 //					Calendar cal = Calendar.getInstance();
