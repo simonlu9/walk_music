@@ -11,6 +11,8 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import javax.xml.stream.events.StartDocument;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.http.util.ByteArrayBuffer;
 
@@ -53,7 +55,7 @@ public class RedisTest implements PageProcessor {
 		//ByteBuffer[] a = new ByteArrayBuffer(128);
 		File f = new File("E:/download/queue/music.163.com.urls.txt");
 		 Spider spider = Spider.create(new RedisTest());
-		 Scheduler scheduler = new RedisScheduler("localhost");
+		 YRedisScheduler scheduler = new YRedisScheduler("localhost");
 
 		FileChannel fc;
 		byte c;
@@ -62,28 +64,48 @@ public class RedisTest implements PageProcessor {
 			MappedByteBuffer mbb = fc.map(FileChannel.MapMode.READ_ONLY, 0, f.length());
 			
 			// scheduler.push(new Request("http://www.baidu.com"),spider );
-			 int start = 144584737;
-			 int i = 0;
-			 for(;start<f.length();start++){
-				 if((c=mbb.get())=='\r'&&(c=mbb.get())=='\n'){
-					//System.out.println(new String(dst,0,i));
-					 
-					 scheduler.push(new Request(new String(dst,0,i)),spider );
-					 for(;i>0;i--){
-						 dst[i]=0;
-					 };
+//			 int start = 144584737;
+//			 int i = 0;
+//			 for(;start<f.length();start++){
+//				 if((c=mbb.get())=='\r'&&(c=mbb.get())=='\n'){
+//					//System.out.println(new String(dst,0,i));
+//					 
+//					 scheduler.push(new Request(new String(dst,0,i)),spider );
+//					 for(;i>0;i--){
+//						 dst[i]=0;
+//					 };
+//					
+//				 }else{
+//					 dst[i++] = c;
+//				 }
+//			 }pushDequeue
+		//	 int end = 144584736;
+			 
+			 //
+			
+			int start = 126616202;
+			int i =0;
+			for(;start<=f.length();start++){
+				 if((c=mbb.get(start))=='\r'&&(c=mbb.get(++start))=='\n'){
+					System.out.println(new String(dst,0,i));
+				//	 System.out.println(i);
 					
-				 }else{
-					 dst[i++] = c;
+					 
+					// scheduler.pushDequeue(new Request(new String(dst,0,i)),spider );
+						 for(;i>=0;i--){
+							 dst[i]=0;
+						 };
+						 i=0;
+					//	 break;
+//						
+					 }else{
+					//	 System.out.println(i);
+						 dst[i++] = c;
 				 }
-			 }
-			
-			
-//			for(int i = 0;i<50;i++){
-//				dst[i] = mbb.get(144584737+i);
-//			}
-//		
-//			System.out.println(new String(dst));
+			}
+		
+		//	System.out.println(new String(dst,0,i));
+			System.out.println("dsf");
 
 
 		} catch (FileNotFoundException e) {
