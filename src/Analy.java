@@ -169,6 +169,8 @@ public class Analy {
 		System.out.println(track);
 		
 		
+		
+		
 	}
 	
 	public static void parseAlbumHtml(File file) throws IOException{
