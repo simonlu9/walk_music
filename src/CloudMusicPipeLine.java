@@ -14,7 +14,7 @@ import us.codecraft.webmagic.utils.FilePersistentBase;
 public class CloudMusicPipeLine  extends FilePersistentBase implements Pipeline {
 
 	@Override
-	public void process(ResultItems resultItems, Task task) {
+	public void process(ResultItems resultItems, Task task) {   
 		// TODO Auto-generated method stub
         String path = this.path + PATH_SEPERATOR + task.getUUID() + PATH_SEPERATOR;
         PrintWriter printWriter;

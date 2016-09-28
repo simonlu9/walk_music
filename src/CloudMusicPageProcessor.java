@@ -1,11 +1,16 @@
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.jsoup.Jsoup;
@@ -14,6 +19,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
@@ -22,6 +28,7 @@ import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.scheduler.FileCacheQueueScheduler;
 import us.codecraft.webmagic.scheduler.component.BloomFilterDuplicateRemover;
+import us.codecraft.webmagic.utils.HttpConstant;
 
 public class CloudMusicPageProcessor implements PageProcessor {
 
@@ -54,6 +61,7 @@ public class CloudMusicPageProcessor implements PageProcessor {
 		site.addHeader("Cookie", myCookie);
 		site.addHeader("host", "music.163.com");
 		site.addHeader("referer", "http://music.163.com/");
+		
 	}
 
 	/*
@@ -247,11 +255,27 @@ public class CloudMusicPageProcessor implements PageProcessor {
 		return site;
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws Exception {
+       Request req =   new Request("http://music.163.com/weapi/v1/resource/comments/R_SO_4_5256424");
+      
+		req.setMethod(HttpConstant.Method.POST);
+		Map nameValuePair = new HashMap();
+		NameValuePair[] values = new NameValuePair[2];
+		String params = "{\"rid\":\"R_SO_4_5256424\",\"offset\":\"0\",\"total\":\"true\",\"limit\":\"20\",\"csrf_token\":\"\"}";
+		String res = AesEncrypt.encrypt(params,"0CoJUm6Qyw8W8jud");
+		res =  AesEncrypt.encrypt(res,"MuUE7ZMtiHPayrrb");
+		String rsaString = RsaEncrypt.encrypt("MuUE7ZMtiHPayrrb", "010001", "00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7");
+		
+		values[0] = new BasicNameValuePair("params", res);
+		
+		values[1] = new BasicNameValuePair("encSecKey", rsaString);
+		nameValuePair.put("nameValuePair", values);
+		req.setExtras(nameValuePair);
 		Spider.create(new CloudMusicPageProcessor())
 				// 从"http://music.163.com/playlist?id=1896896"开始抓  http://music.163.com/artist?id=3084 http://music.163.com/artist?id=5771
-				.addUrl("http://music.163.com/playlist?id=1896896").addPipeline(new FilePipeline("E:\\download") {
+				//.addUrl("http://music.163.com/playlist?id=1896896")
+				.addRequest(req)
+				.addPipeline(new FilePipeline("E:\\download") {
 					@Override
 					public void process(ResultItems resultItems, Task task) {
 						// TODO Auto-generated method stub
@@ -264,11 +288,18 @@ public class CloudMusicPageProcessor implements PageProcessor {
 						//System.out.println(path); //.substring(1, 2)
 						PrintWriter printWriter;
 						try {
-						
+						File tmp = 	getFile(path+aPath+PATH_SEPERATOR+bPath+PATH_SEPERATOR
+									+ fileName + ".html");
+						if(tmp.exists()){
+							System.out.println(tmp.getName());
+						}
+						 if (!tmp.getParentFile().exists()) {  
+				                // 如果路径不存在,则创建  
+				                tmp.getParentFile().mkdirs();  
+				            }  
 							printWriter = new PrintWriter(
 									new OutputStreamWriter(
-											new FileOutputStream(getFile(path+aPath+PATH_SEPERATOR+bPath+PATH_SEPERATOR
-													+ fileName + ".html")),
+											new FileOutputStream(tmp),
 									"UTF-8"));
 							printWriter.println(resultItems.get("content"));
 							printWriter.close();
@@ -284,7 +315,7 @@ public class CloudMusicPageProcessor implements PageProcessor {
 				})
 				.scheduler(new FileCacheQueueScheduler("E:/download/queue/")
 				.setDuplicateRemover(new BloomFilterDuplicateRemover(10000000)
-					)
+					) 
 				)
 				// 开启5个线程抓取
 				.thread(5)
