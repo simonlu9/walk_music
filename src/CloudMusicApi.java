@@ -24,13 +24,13 @@ public class CloudMusicApi {
 	
 	public static void main(String[] args) throws Exception {
 		//System.out.println(89);
-//		TrackDao  dao = new TrackDao();
-//		List ids = dao.findTracks();
-//		addToPlayList(ids,"473799522");
+		TrackDao  dao = new TrackDao();
+		List ids = dao.findTracks();
+		addToPlayList(ids,"473799522");
 		
 		//getUserListenRecord("116540575");
 		//getTrackComment("37196629");
-		addTrackComment("37196629","hello bitch");
+		//addTrackComment("37196629","hello bitch");
 	}
 	
 	
@@ -150,6 +150,20 @@ public class CloudMusicApi {
 		
 		
 	}
+	/*
+	 * üc×“ÔuÕ“
+	 * http://music.163.com/weapi/v1/comment/like?csrf_token=bafa47ad32f08da2a4cdb9f3eaa8b7f7
+	 * "{"commentId":"20057562","threadId":"R_SO_4_77099","like":"true","csrf_token":"bafa47ad32f08da2a4cdb9f3eaa8b7f7"}"
+	 * */
+	public static void likeComment(String trackId,String commentId) throws JSONException{
+		JSONObject param =  new JSONObject();
+		param.put("commentId", commentId);
+		param.put("threadId","R_SO_4_"+trackId);
+		param.put("like","true");
+		param.put("csrf_token","");
+		
+	}
+	
 	
 	/*
 	 * Ìí¼Ó¸èÇúÔuÕ“

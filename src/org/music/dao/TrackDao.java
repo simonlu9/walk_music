@@ -81,7 +81,7 @@ public class TrackDao {
 		public List findTracks(){
 			
 			Connection conn = MysqlPool.pool.getConnection();
-			String  sql  = "select id from track where score = 100 limit 1000,1000";
+			String  sql  = "select id from track where score = 100 limit 9000,1000";
 			PreparedStatement ps;
 			String id;
 			List ids = new ArrayList();
